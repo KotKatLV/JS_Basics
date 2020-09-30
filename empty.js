@@ -1,1 +1,0 @@
-alert("empty js file");
