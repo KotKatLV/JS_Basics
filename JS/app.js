@@ -1,58 +1,133 @@
 "use strict"
 
-// 1.	Запросите у пользователя его имя и выведите в ответ: «Привет, его имя!».
-let name = prompt("Enter your name:", "Konstantin");
-alert("Hi, " + name + "!");
+// 1.	Запросить у пользователя его возраст и определить, кем он является: ребенком (0–2), подростком (12–18), взрослым (18_60) или пенсионером (60– ...).
+let userAge = +prompt("Enter your age: ", "30");
 
-// 2.	Запросите у пользователя год его рождения, посчитайте, сколько ему лет и выведите результат. Текущий год укажите в коде как константу.
-const currentYear = new Date().getFullYear();
-let yearOfBirth = +prompt("Enter your year of birth:", "1996");
-alert("You are " + (currentYear - yearOfBirth) + " y.o.");
-
-// 3.	Запросите у пользователя длину стороны квадрата и выведите периметр такого квадрата.
-let side = +prompt("Enter the side of the square:", "4");
-alert("Square perimeter = " + side * 4);
-
-// 4.	Запросите у пользователя радиус окружности и выведите площадь такой окружности.
-let radius = +prompt("Enter radius:", "4");
-alert("Circle area = " + (Math.PI * radius * radius).toFixed(2) + "cs.");
-
-// 5.    Запросите у пользователя расстояние в км между двумя городами и за сколько часов он хочет добраться. Посчитайте скорость, с которой необходимо двигаться, чтобы успеть вовремя.
-let distanceInKM = +prompt("Enter the distance between two cities in km: ", "25");
-let timeInHours = +prompt("Enter how many hours does you want to get: ", "2");
-alert("If you move at a min speed of " + (distanceInKM / timeInHours).toFixed(2) + " km/h you will arrive on time.")
-
-// 6.   Реализуйте конвертор валют. Пользователь вводит доллары, программа переводит в евро. Курс валюты храните в константе.
-const oneEuroToDollar = 0.91;
-let userAmountInDollars = +prompt("Enter the amount in dollars: ", "25");
-alert(userAmountInDollars + "$ = " + Math.round((userAmountInDollars * oneEuroToDollar)) + "€");
-
-// 7.   Пользователь указывает объем флешки в Гб. Программа должна посчитать сколько файлов размером в 820 Мб по-мещается на флешку.
-let fileSizeInGb = (820 / 1000).toFixed(2);
-let fleshSizeInGb = +prompt("Enter flesh size in gigabyte: ", "5");
-let countOfFilesToRead = 0;
-
-while (fleshSizeInGb - fileSizeInGb > 0) {
-    countOfFilesToRead++;
-    fleshSizeInGb -= fileSizeInGb;
+if (userAge < 3) {
+    alert("You are a child");
+} else if (userAge >= 12 && userAge <= 18) {
+    alert("You are a teenager");
+} else if (userAge > 18 && userAge <= 60) {
+    alert("You are an adult");
+} else if (userAge > 60) {
+    alert("You are a senior citizen");
 }
-alert("You can record " + countOfFilesToRead + " file(s).");
 
-// 8.	Пользователь вводит сумму денег в кошельке и цену одной шоколадки. Программа выводит сколько шоколадок может купить пользователь и сколько сдачи у него останется.
-let userCash = parseFloat(prompt("Enter amount of money in your wallet: ", "250"));
-let oneChocolateCost = parseFloat(prompt("Enter the price of one chocolate bar: ", "8"));
-let countOfChocolates = 0;
-
-while (userCash - oneChocolateCost > 0) {
-    countOfChocolates++;
-    userCash -= oneChocolateCost;
+// 2.	Запросить у пользователя число от 0 до 9 и вывести ему спецсимвол, который расположен на этой клавише (1–!, 2–@, 3–# и т. д).
+let userValue = +prompt("Enter a number from 0 to 9: ", "5");
+if (userValue >= 0 && userValue <= 9) {
+    switch (userValue) {
+        case 1:
+            alert("!");
+            break;
+        case 2:
+            alert("@");
+            break;
+        case 3:
+            alert("#");
+            break;
+        case 4:
+            alert("$");
+            break;
+        case 5:
+            alert("%");
+            break;
+        case 6:
+            alert("^");
+            break;
+        case 7:
+            alert("&");
+            break;
+        case 8:
+            alert("*");
+            break;
+        case 9:
+            alert("(");
+            break;
+    }
 }
-alert("You can buy " + countOfChocolates + " chocolates. Yours change = " + userCash);
 
-// 9.	Запросите у пользователя трехзначное число и выведите его задом наперед. Для решения задачи вам понадобится оператор % (остаток от деления).
-let userValue = +prompt("Enter value: ", "123");
-alert(('' + userValue).split('').reverse().join(''));
+// 3.	Запросить у пользователя трехзначное и число и проверить, есть ли в нем одинаковые цифры.
+userValue = +prompt("Enter a three-digit number: ", "322");
+let set = new Set(userValue.toString().split(''));
+set.size === userValue.toString().split('').length ? alert("No") : alert("Yes");
 
-// 10.	Запросите у пользователя целое число и выведите в ответ, четное число или нет. В задании используйте логические операторы. В задании не надо использовать if или switch.
-userValue = +prompt("Enter value: ", "6");
-userValue % 2 === 0 ? alert("Even number") : alert("Odd number");
+// 4.	Запросить у пользователя год и проверить, високосный он или нет. Високосный год либо кратен 400, либо кратен 4 и при этом не кратен 100.
+let userYear = +prompt("Enter year: ", "2000");
+(userYear % 400 === 0 || (userYear % 4 === 0 && userYear % 100 !== 0)) ? alert("Leap year"): alert("Not leap year");
+
+// 5.	Запросить у пользователя пятиразрядное число и определить, является ли оно палиндромом.
+userValue = +prompt("Enter value: ", "101");
+let revUserValue = userValue.toString().split('').reverse().join('')
+userValue === revUserValue ? alert("This value is palindrome") : alert("This value isn't palindrome");
+
+// 6.	Написать конвертор валют. Пользователь вводит количество USD, выбирает, в какую валюту хочет перевести: EUR, UAN или AZN, и получает в ответ соответствующую сумму.
+userValue = +prompt("Enter amount of dollars: ", "500");
+if (confirm("Convert to EUR")) {
+    alert(userValue + "USD = " + (userValue * 0.91) + "EUR");
+} else if (confirm("Convert to UAH")) {
+    alert(userValue + "USD = " + (userValue * 27.30) + "UAH");
+} else if (confirm("Convert to AZN")) {
+    alert(userValue + "USD = " + (userValue * 1.7) + "AZN");
+}
+
+// 7.	Запросить у пользователя сумму покупки и вывести сумму к оплате со скидкой: от 200 до 300 – скидка будет 3%, от 300 до 500 – 5%, от 500 и выше – 7%.
+userValue = +prompt("Enter purchase amount: ", "499");
+switch (true) {
+    case (userValue >= 200 && userValue < 300):
+        alert("Discounted amount = " + (userValue - (userValue * 3) / 100));
+        break;
+    case (userValue > 300 && userValue < 500):
+        alert("Discounted amount = " + (userValue - (userValue * 5) / 100));
+        break;
+    case userValue > 500:
+        alert("Discounted amount = " + (userValue - (userValue * 7) / 100));
+        break;
+}
+
+// 8.	Запросить у пользователя длину окружности и периметр квадрата. Определить, может ли такая окружность поместиться в указанный квадрат.
+let circumference = +prompt("Enter circumference: ", "10");
+let squarePerimeter = +prompt("Enter square perimeter: ", "40");
+let circleRadius = circumference / (2 * Math.PI);
+let squareSide = squarePerimeter / 4;
+circleRadius <= squareSide / 2 ? alert("Circle is placed") : alert("circle isn't placed");
+
+// 9.	Задать пользователю 3 вопроса, в каждом вопросе по 3 варианта ответа. За каждый правильный ответ начисляется 2 балла. После вопросов выведите      пользователю количество набранных баллов.
+let countOfPoints = 0;
+alert("Question № 1. The capital of Hungary:")
+if (confirm("Bucharest")) {
+
+} else if (confirm("Bratislava")) {
+
+} else if (confirm("Budapest")) {
+    countOfPoints += 2;
+}
+
+alert("Question № 2. The oldest city in Belarus:");
+if (confirm("Novopolotsk")) {
+
+} else if (confirm("Polotsk")) {
+    countOfPoints += 2;
+} else if (confirm("Novogrudok")) {
+
+}
+
+alert("Question № 3. In what year was the constitution of the Republic of Belarus adopted:");
+if (confirm("1993")) {
+    countOfPoints += 2;
+} else if (confirm("1994")) {
+
+} else if (confirm("1995")) {
+
+}
+
+alert("You scored " + countOfPoints + " points");
+
+// 10.	Запросить дату (день, месяц, год) и вывести следующую за ней дату. Учтите возможность перехода на следующий месяц, год, а также високосный год.
+let userDate = prompt("Enter date: ", "31.12.2020");
+// let date = new Date(2020, 11, 1);
+let tmp = userDate.split('.');
+let date;
+date = new Date(parseInt(tmp[2]), parseInt(tmp[1] - 1), parseInt(tmp[0]));
+date.setDate(date.getDate() + 1)
+alert(date);

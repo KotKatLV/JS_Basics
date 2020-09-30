@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5ee57e-49bd-4062-beed-bbcfa2d8b615" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/.idea/JS_Basics.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="HW_1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,10 +53,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="D:/JS/HW_1/HW_1/JS/app.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
     </key>
@@ -76,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601505847093</updated>
-      <workItem from="1601505848239" duration="504000" />
+      <workItem from="1601505848239" duration="817000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1601505888064</created>
@@ -85,7 +82,28 @@
       <option name="project" value="LOCAL" />
       <updated>1601505888064</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="commit">
+      <created>1601506363775</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601506363775</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit">
+      <created>1601506408394</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601506408394</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit">
+      <created>1601506484154</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1601506484154</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,14 +125,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601506651104">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506651104" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601506082879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506082879" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601505889802">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601506485489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601505889802" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506485489" />
     <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1601505988970">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
