@@ -4,152 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kapatkov_JS_HW_4</title>
+    <title>Kaptkov_JS_HW_5</title>
 </head>
 
 <body>
 
-    <script>
-        "use strict";
-        let getValueFromForm = (formId, elementId) => document.forms[formId].elements[elementId].value;
-
-        // 1. Написать функцию, которая принимает 2 числа и возвращает -1, если первое меньше, чем второе; 1 – если первое больше, чем второе; и 0 – если числа равны.
-        function getFirstTaskResult() {
-            let firstValue = getValueFromForm("FirstTask", "firstValue");
-            let secondValue = getValueFromForm("FirstTask", "secondValue");
-
-            if (firstValue > secondValue) {
-                document.getElementById("firstTaskResult").value = 1;
-            } else if (firstValue < secondValue) {
-                document.getElementById("firstTaskResult").value = -1;
-            } else
-                document.getElementById("firstTaskResult").value = 0;
-        }
-
-        // 2.	Написать функцию, которая вычисляет факториал переданного ей числа
-        function getSecondTaskResult() {
-            let value = getValueFromForm("SecondTask", "value");
-            let result = 1;
-
-            while (value) {
-                result *= value--;
-            }
-            document.getElementById("secondTaskResult").value = result;
-        }
-
-        // 3.	Написать функцию, которая принимает три отдельные цифры и превращает их в одно число. Например: цифры 1, 4, 9 превратятся в число 149
-        function getThirdTaskResult() {
-            let firstValue = String(getValueFromForm("ThirdTask", "fValue"));
-            let secondValue = String(getValueFromForm("ThirdTask", "sValue"));
-            let thirdValue = String(getValueFromForm("ThirdTask", "tValue"));
-            document.getElementById("thirdTaskResult").value = firstValue + secondValue + thirdValue;
-        }
-
-        // 4.	Написать функцию, которая принимает длину и ширину прямоугольника и вычисляет его площадь. Если в функцию передали 1 параметр, то она вычисляет площадь квадрата.
-        function getFourthTaskResult() {
-            let length = getValueFromForm("FourthTask", "lengthh");
-            let width = getValueFromForm("FourthTask", "width");
-
-            if (width === 0 || length === 0) {
-                width === 0 ? document.getElementById("fourthTaskResult").value = length * length : document.getElementById("fourthTaskResult").value = width * width;
-            } else {
-                document.getElementById("fourthTaskResult").value = width * length;
-            }
-        }
-
-        // 5.	Написать функцию, которая проверяет, является ли переданное ей число совершенным. Совершенное число – это число, равное сумме всех своих собственных делителей.
-        function getFifthTaskResult() {
-            let value = getValueFromForm("FifthTask", "userValue");
-            let result = [];
-            for (let i = 1; i < value; i++) {
-                if (value % i === 0) {
-                    result.push(i);
-                }
-            }
-            let tmp = result.reduce((acc, curVal) => acc + curVal);
-            tmp === value ? document.getElementById("fifthTaskResult").value = `${value} - совершенное число` : document.getElementById("fifthTaskResult").value = `${value} - несовершенное число`;
-        }
-
-        function isPerfectValue(myValue) {
-            let result = [];
-            for (let i = 1; i < myValue; i++) {
-                if (myValue % i === 0) {
-                    result.push(i);
-                }
-            }
-            if (result.length !== 0) {
-                let tmp = result.reduce((acc, curVal) => acc + curVal);
-                return tmp === myValue;
-            }
-            return false;
-        }
-
-        // 6.	Написать функцию, которая принимает минимальное и максимальное значения для диапазона, и выводит только те числа из диапазона, которые являются совершенными.
-        function getSixthTaskResult() {
-            let firstValue = getValueFromForm("SixthTask", "value_1");
-            let secondValue = getValueFromForm("SixthTask", "value_2");
-            let result = [];
-            for (let i = firstValue; i <= secondValue; i++) {
-                if (isPerfectValue(i)) {
-                    result.push(i);
-                }
-            }
-            document.getElementById("sixthTaskResult").value = result;
-        }
-
-        // 7. Написать функцию, которая принимает время (часы, минуты, секунды) и выводит его на экран в формате «чч:мм:сс». Если при вызове функции минуты и/или секунды не были переданы, то выводить их как 00.
-        function getSeventhTaskResult() {
-            let hours = getValueFromForm("SeventhTask", "hours");
-            let min = getValueFromForm("SeventhTask", "min");
-            let sec = getValueFromForm("SeventhTask", "sec");
-            document.getElementById("seventhTaskResult").value = hours + ":" + (min !== 0 ? min : "00") + ":" + (sec !== 0 ? sec : "00");
-        }
-
-        // 8.	Написать функцию, которая принимает часы, минуты и секунды и возвращает это время в секундах.
-        function getEighthTaskResult() {
-            let hours = getValueFromForm("EighthTask", "hours_2");
-            let min = getValueFromForm("EighthTask", "min_2");
-            let sec = getValueFromForm("EighthTask", "sec_2");
-            document.getElementById("eighthTaskResult").value = hours * 3600 + min * 60 + +sec;
-        }
-
-        // 9.	Написать функцию, которая принимает количество секунд, переводит их в часы, минуты и секунды и возвращает в виде строки «чч:мм:сс»
-        function getNinthTaskResult() {
-            let timeInSec = getValueFromForm("NinthTask", "sec_3");
-            let hours = timeInSec / 3600 ^ 0;
-            let min = (timeInSec - hours * 3600) / 60 ^ 0;
-            let seconds = timeInSec - hours * 3600 - min * 60;
-            document.getElementById("ninthTaskResult").value = hours + ":" + min + ":" + seconds;
-        }
-
-        // 10.	Написать функцию, которая считает разницу между датами.
-        function getTenthTaskResult() {
-
-            let firstDateHours = getValueFromForm("TenthTask", "hours_3");
-            let firstDateMin = getValueFromForm("TenthTask", "min_3");
-            let firstDateSec = getValueFromForm("TenthTask", "sec_4");
-
-            let secondDateHours = getValueFromForm("TenthTask", "hours_4");
-            let secondDateMin = getValueFromForm("TenthTask", "min_4");
-            let secondDateSec = getValueFromForm("TenthTask", "sec_5");
-
-            let getSecondsFromDate = (h, m, s) => h * 3600 + m * 60 + +s;
-            let totalSecDiff = getSecondsFromDate(firstDateHours, firstDateMin, firstDateMin) - getSecondsFromDate(secondDateHours, secondDateMin, secondDateSec);
-
-            let hours = totalSecDiff / 3600 ^ 0;
-            let min = (totalSecDiff - hours * 3600) / 60 ^ 0;
-            let seconds = totalSecDiff - hours * 3600 - min * 60;
-
-            document.getElementById("tenthTaskResult").value = hours + ":" + min + ":" + seconds;
-        }
-    </script>
-
     <form id="FirstTask">
-        <legend><strong>Написать функцию, которая принимает 2 числа и возвращает -1, если первое меньше, чем второе; 1 – если первое больше, чем второе; и 0 – если числа равны.</strong></legend>
-        <label>Введите первое число</label>
-        <label for="firstValue"></label><input type="number" id="firstValue">
-        <label>Введите второе число</label>
-        <label for="secondValue"></label><input type="number" id="secondValue">
+        <legend><strong>Написать функцию возведения числа в степень.</strong></legend>
+        <label>Введите число</label>
+        <label for="value"></label><input type="number" id="value">
+        <label>Введите степень</label>
+        <label for="pow"></label><input type="number" id="pow">
         <input type="button" value="Вычислить" onclick="getFirstTaskResult()">
         <p>Результат:
             <output id="firstTaskResult"></output>
@@ -158,9 +23,13 @@
     </form>
 
     <form id="SecondTask">
-        <legend><strong>Написать функцию, которая принимает 2 числа и возвращает -1, если первое меньше, чем второе; 1 – если первое больше, чем второе; и 0 – если числа равны.</strong></legend>
-        <label>Введите число</label>
-        <label for="value"></label><input type="number" id="value">
+        <legend>
+            <strong>Запросить 2 числа и найти наибольший общий делитель.</strong>
+        </legend>
+        <label>Первое число:</label>
+        <label for="firstValue"></label><input type="number" id="firstValue">
+        <label>Второе число:</label>
+        <label for="secondValue"></label><input type="number" id="secondValue">
         <input type="button" value="Найти" onclick="getSecondTaskResult()">
         <p>Результат:
             <output id="secondTaskResult"></output>
@@ -169,14 +38,10 @@
     </form>
 
     <form id="ThirdTask">
-        <legend><strong>Написать функцию, которая принимает три отдельные цифры и превращает их в одно число. Например: цифры 1, 4, 9 превратятся в число 149.</strong></legend>
-        <label>Введите первое число</label>
-        <label for="fValue"></label><input type="number" id="fValue">
-        <label>Введите второе число</label>
-        <label for="sValue"></label><input type="number" id="sValue">
-        <label>Введите третье число</label>
-        <label for="tValue"></label><input type="number" id="tValue">
-        <input type="button" value="Превратить в одно число" onclick="getThirdTaskResult()">
+        <legend><strong>Написать функцию для поиска максимальной цифры в числе.</strong></legend>
+        <label>Введите число:</label>
+        <label for="userValue"></label><input type="number" id="userValue">
+        <input type="button" value="Найти" onclick="getThirdTaskResult()">
         <p>Результат:
             <output id="thirdTaskResult"></output>
         </p>
@@ -184,11 +49,9 @@
     </form>
 
     <form id="FourthTask">
-        <legend><strong>Написать функцию, которая принимает длину и ширину прямоугольника и вычисляет его площадь. Если в функцию передали 1 параметр, то она вычисляет площадь квадрата.</strong></legend>
-        <label>Введите длину:</label>
-        <label for="lengthh"></label><input type="number" id="lengthh" value="0">
-        <label>Введите ширину:</label>
-        <label for="width"></label><input type="number" id="width" value="0">
+        <legend><strong>Написать функцию, которая определяет простое ли переданное число.</strong></legend>
+        <label>Введите число:</label>
+        <label for="userValue_2"></label><input type="number" id="userValue_2">
         <input type="button" value="Найти" onclick="getFourthTaskResult()">
         <p>Результат:
             <output id="fourthTaskResult"></output>
@@ -197,12 +60,10 @@
     </form>
 
     <form id="FifthTask">
-        <legend>
-            <strong>Написать функцию, которая проверяет, является ли переданное ей число совершенным. Совершенное число – это число, равное сумме всех своих собственных делителей.</strong>
-        </legend>
+        <legend><strong>Написать функцию для вывода всех множителей переданного числа в возрастающем порядке.Например: число 18 – множители 2 * 3 * 3.</strong></legend>
         <label>Введите число:</label>
-        <label for="userValue"></label><input type="number" id="userValue">
-        <input type="button" value="Проверить" onclick="getFifthTaskResult()">
+        <label for="userValue_3"></label><input type="number" id="userValue_3">
+        <input type="button" value="Вывести" onclick="getFifthTaskResult()">
         <p>Результат:
             <output id="fifthTaskResult"></output>
         </p>
@@ -211,74 +72,20 @@
 
     <form id="SixthTask">
         <legend>
-            <strong>Написать функцию, которая принимает минимальное и максимальное значения для диапазона, и выводит только те числа из диапазона, которые являются совершенными.</strong>
+            <strong>
+                Написать функцию, которая возвращает число Фибоначчи по переданному порядковому номеру. Числа Фибоначчи: 1, 1, 2, 3, 5, 8, 13… Ряд основывается на том, что каждое число равно сумме двух предыдущих чисел. Например: порядковый номер 3 – число 2, порядковый номер 6 – число 8
+            </strong>
         </legend>
-        <label>Введите левую границу диапазона:</label>
+        <label>Введите первое число:</label>
         <label for="value_1"></label><input type="number" id="value_1">
-        <label>Введите правую границу диапазона:</label>
-        <label for="value_2"></label><input type="number" id="value_2">
         <input type="button" value="Найти" onclick="getSixthTaskResult()">
-        <p>Совершенные числа из диапазона:
+        <p>Результат:
             <output id="sixthTaskResult"></output>
         </p>
         <hr>
     </form>
 
-    <form id="SeventhTask">
-        <legend>
-            <strong>Написать функцию, которая принимает время (часы, мину-ты, секунды) и выводит его на экран в формате «чч:мм:сс». Если при вызове функции минуты и/или секунды не были переданы, то выводить их как 00</strong>
-        </legend>
-        <label>Введите часы:</label>
-        <label for="hours"></label><input type="number" id="hours" value="0">
-        <label>Введите минуты:</label>
-        <label for="min"></label><input type="number" id="min" value="0">
-        <label>Введите секунды:</label>
-        <label for="sec"></label><input type="number" id="sec" value="0">
-
-        <input type="button" value="Показать" onclick="getSeventhTaskResult()">
-        <p>Результат:
-            <output id="seventhTaskResult"></output>
-        </p>
-        <hr>
-    </form>
-
-    <form id="EighthTask">
-        <legend><strong>Написать функцию, которая принимает часы, минуты и секунды и возвращает это время в секундах.</strong></legend>
-        <label>Введите часы:</label>
-        <label for="hours_2"></label><input type="number" id="hours_2" value="0">
-        <label>Введите минуты:</label>
-        <label for="min_2"></label><input type="number" id="min_2" value="0">
-        <label>Введите секунды:</label>
-        <label for="sec_2"></label><input type="number" id="sec_2" value="0"> Результат в секундах:
-        <output id="eighthTaskResult"></output>
-        <input type="button" value="Показать" onclick="getEighthTaskResult()">
-        <hr>
-    </form>
-
-    <form id="NinthTask">
-        <legend><strong>Написать функцию, которая принимает количество секунд, переводит их в часы, минуты и секунды и возвращает в виде строки «чч:мм:сс»</strong></legend>
-        <label>Введите секунды:</label>
-        <label for="sec_3"></label><input type="number" id="sec_3"> Результат:
-        <output id="ninthTaskResult"></output>
-        <input type="button" value="Показать" onclick="getNinthTaskResult()">
-    </form>
-
-    <form id="TenthTask">
-        <hr>
-        <legend><strong>Написать функцию, которая считает разницу между датами.</strong></legend> Введите первую дату: часы:
-        <label for="hours_3"></label><input type="number" id="hours_3"> минуты:
-        <label for="min_3"></label><input type="number" id="min_3"> секунды:
-        <label for="sec_4"></label><input type="number" id="sec_4">
-        <p>Введите вторую дату:
-            <label for="hours_4"></label><input type="number" id="hours_4"> минуты:
-            <label for="min_4"></label><input type="number" id="min_4"> секунды:
-            <label for="sec_5"></label><input type="number" id="sec_5">
-        </p>
-        Результат:
-        <output id="tenthTaskResult"></output>
-        <input type="button" value="Рассчитать" onclick="getTenthTaskResult()">
-        <hr>
-    </form>
+    <script src="JS/app.js"></script>
 </body>
 
 </html>
