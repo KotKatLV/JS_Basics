@@ -4,84 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaptkov_JS_HW_5</title>
+    <title>Kapatkov_JS_HW_6</title>
 </head>
 
 <body>
 
     <form id="FirstTask">
-        <legend><strong>Написать функцию возведения числа в степень.</strong></legend>
-        <label>Введите число</label>
-        <label for="value"></label><input type="number" id="value">
-        <label>Введите степень</label>
-        <label for="pow"></label><input type="number" id="pow">
-        <input type="button" value="Вычислить" onclick="getFirstTaskResult()">
-        <p>Результат:
-            <output id="firstTaskResult"></output>
+
+        <legend>
+            <strong>
+                Задание 1.
+                <p>Создать объект, описывающий автомобиль (производитель, модель, год выпуска, средняя скорость), и следующие функции для работы с этим объектом.</p>
+            </strong>
+        </legend>
+
+        <label>Введите производителя:</label>
+        <label for="producer"></label><input type="text" id="producer" value="ВАЗ">
+
+        <label>Введите модель:</label>
+        <label for="model"></label><input type="text" id="model" value="2107">
+
+        <label>Введите год выпуска:</label>
+        <label for="yearOfIssue"></label><input type="number" id="yearOfIssue" value="1990">
+
+        <label>Введите среднюю скорость(км/ч):</label>
+        <label for="avgSpeed"></label><input type="number" id="avgSpeed" value="75">
+
+        <p>
+            <input type="button" value="Вывести информацию об автомобиле" onclick="getInfoAboutCar()">
+            <output id="infoAboutCar"></output>
         </p>
+
+        <p>
+            <label>Введите расстояние(км), которое хотите преодолеть:</label>
+            <label for="distance"></label><input type="number" id="distance" value="150">
+
+            <p>
+                <input type="button" value="Рассчитать необходимое время для передвижения" onclick="getTimeInWay()">
+                <output id="timeInWay"></output>
+            </p>
+
         <hr>
     </form>
 
     <form id="SecondTask">
+
         <legend>
-            <strong>Запросить 2 числа и найти наибольший общий делитель.</strong>
+            <strong>
+            Задание 2.
+            <p>Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, и следующие функции для работы с этим объектом.</p>
+        </strong>
         </legend>
-        <label>Первое число:</label>
-        <label for="firstValue"></label><input type="number" id="firstValue">
-        <label>Второе число:</label>
-        <label for="secondValue"></label><input type="number" id="secondValue">
-        <input type="button" value="Найти" onclick="getSecondTaskResult()">
-        <p>Результат:
-            <output id="secondTaskResult"></output>
+
+        <label>Введите числитель 1-ой дроби:</label>
+        <label for="numerator_1"></label><input type="text" id="numerator_1" value="6" onchange="clearResultFieldsFr()">
+
+        <label>Введите знаменатель 1-ой дроби:</label>
+        <label for="denumerator_1"></label><input type="text" id="denumerator_1" value="8">
+
+        <label>Введите числитель 2-ой дроби:</label>
+        <label for="numerator_2"></label><input type="text" id="numerator_2" value="5">
+
+        <label>Введите знаменатель 2-ой дроби:</label>
+        <label for="denumerator_2"></label><input type="text" id="denumerator_2" value="9">
+
+        <p>
+            <input type="button" value="Сложить дроби" onclick="additionOfFractions()">
+            <output id="add"></output>
         </p>
+
+        <p>
+            <input type="button" value="Вычесть дроби" onclick="subtractionOfFractions()">
+            <output id="sub"></output>
+        </p>
+
+        <p>
+            <input type="button" value="Умножить дроби" onclick="fractionMultiplication()">
+            <output id="mul"></output>
+        </p>
+
+        <p>
+            <input type="button" value="Разделить дроби" onclick="fractionDivision()">
+            <output id="div"></output>
+        </p>
+
+        <p>
+            <input type="button" value="Сокращение дробей" onclick="fractionReduction()">
+            <output id="red_1"></output>
+            <output id="red_2"></output>
+        </p>
+
         <hr>
     </form>
 
     <form id="ThirdTask">
-        <legend><strong>Написать функцию для поиска максимальной цифры в числе.</strong></legend>
-        <label>Введите число:</label>
-        <label for="userValue"></label><input type="number" id="userValue">
-        <input type="button" value="Найти" onclick="getThirdTaskResult()">
-        <p>Результат:
-            <output id="thirdTaskResult"></output>
-        </p>
-        <hr>
-    </form>
 
-    <form id="FourthTask">
-        <legend><strong>Написать функцию, которая определяет простое ли переданное число.</strong></legend>
-        <label>Введите число:</label>
-        <label for="userValue_2"></label><input type="number" id="userValue_2">
-        <input type="button" value="Найти" onclick="getFourthTaskResult()">
-        <p>Результат:
-            <output id="fourthTaskResult"></output>
-        </p>
-        <hr>
-    </form>
-
-    <form id="FifthTask">
-        <legend><strong>Написать функцию для вывода всех множителей переданного числа в возрастающем порядке.Например: число 18 – множители 2 * 3 * 3.</strong></legend>
-        <label>Введите число:</label>
-        <label for="userValue_3"></label><input type="number" id="userValue_3">
-        <input type="button" value="Вывести" onclick="getFifthTaskResult()">
-        <p>Результат:
-            <output id="fifthTaskResult"></output>
-        </p>
-        <hr>
-    </form>
-
-    <form id="SixthTask">
         <legend>
             <strong>
-                Написать функцию, которая возвращает число Фибоначчи по переданному порядковому номеру. Числа Фибоначчи: 1, 1, 2, 3, 5, 8, 13… Ряд основывается на том, что каждое число равно сумме двух предыдущих чисел. Например: порядковый номер 3 – число 2, порядковый номер 6 – число 8
+                Задание 3.
+                <p>Создать объект, описывающий время (часы, минуты, секунды), и следующие функции для работы с этим объектом.</p>
             </strong>
         </legend>
-        <label>Введите первое число:</label>
-        <label for="value_1"></label><input type="number" id="value_1">
-        <input type="button" value="Найти" onclick="getSixthTaskResult()">
-        <p>Результат:
-            <output id="sixthTaskResult"></output>
+
+        <label>Введите часы:</label>
+        <label for="hours"></label><input type="number" id="hours" value="20" onchange="clearResultFieldsTime()">
+
+        <label>Введите минуты:</label>
+        <label for="min"></label><input type="number" id="min" value="30" onchange="clearResultFieldsTime()">
+
+        <label>Введите секунды:</label>
+        <label for="sec"></label><input type="number" id="sec" value="45" onchange="clearResultFieldsTime()">
+
+        <p>
+            <input type="button" value="Вывод времени на экран" onclick="showTime()">
+            <output id="getTime"></output>
         </p>
+
+        <p>
+            <label>Добавить ко времени:
+            <input type="number" id="addUserHours">
+             ч.</label>
+            <input type="button" value="Добавить" onclick="addHours()">
+            <output id="afterAddHours"></output>
+        </p>
+
+        <p>
+            <label>Добавить ко времени:
+            <input type="number" id="addUserMin">
+            мин.</label>
+            <input type="button" value="Добавить" onclick="addMin()">
+            <output id="afterAddMin"></output>
+
+        </p>
+
+        <p>
+            <label>Добавить ко времени:
+            <input type="number" id="addUserSeconds">
+            сек.</label>
+            <input type="button" value="Добавить" onclick="addSec()">
+            <output id="afterAddSec"></output>
+        </p>
+
         <hr>
     </form>
 
