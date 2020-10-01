@@ -1,262 +1,129 @@
 "use strict"
 
-let getValueFromForm = (formId, elementId) => document.forms[formId].elements[elementId].value;
-
-function clearResultFieldsFr() {
-    document.getElementById("add").value = "";
-    document.getElementById("sub").value = "";
-    document.getElementById("mul").value = "";
-    document.getElementById("div").value = "";
-    document.getElementById("red_1").value = "";
-    document.getElementById("red_2").value = "";
-}
-
-function clearResultFieldsTime() {
-    document.getElementById("afterAddHours").value = "";
-    document.getElementById("afterAddMin").value = "";
-    document.getElementById("afterAddSec").value = "";
-}
-
 // Задание 1
 
-// Создать объект, описывающий автомобиль (производитель, модель, год выпуска, средняя скорость), и следующие функции для работы с этим объектом.
-function makeCar(producer, model, yearOfIssue, avgSpeed) {
-    return {
-        producer,
-        model,
-        yearOfIssue,
-        avgSpeed,
-    }
+// Создать массив «Список покупок». Каждый элемент массива является объектом, который содержит название продукта, необходимое количество и куплен или нет. Написать несколько функций для работы с таким массивом.
+let shoppingList = [
+    { productName: "Телевизор", necessaryCount: 10, isBought: false },
+    { productName: "Смартфон", necessaryCount: 3, isBought: true },
+    { productName: "Наушники", necessaryCount: 9, isBought: false },
+    { productName: "Компьютерная мышь", necessaryCount: 5, isBought: false },
+    { productName: "Компьютерная клавиатура", necessaryCount: 2, isBought: true },
+];
+
+// 1.	Вывод всего списка на экран таким образом, чтобы сначала шли некупленные продукты, а потом – купленные.
+shoppingList.sort(p => p.isBought ? 1 : -1).forEach(p => console.log(p));
+
+// 2.	Добавление покупки в список. Учтите, что при добавлении покупки с уже существующим в списке продуктом, необходимо увеличивать количество в существующей покупке, а не добавлять новую.
+let purchase1 = { productName: "Телевизор", necessaryCount: 2, isBought: false };
+let purchase2 = { productName: "Микрофон", necessaryCount: 1, isBought: true };
+
+function addToShoppingList(purchase, list) {
+    let index = list.findIndex(p => p.productName === purchase.productName);
+    index !== -1 ? list[index].necessaryCount += purchase.necessaryCount : list.push(purchase);
 }
 
-function updateCar(car) {
-    car.producer = getValueFromForm("FirstTask", "producer");
-    car.model = getValueFromForm("FirstTask", "model");
-    car.yearOfIssue = getValueFromForm("FirstTask", "yearOfIssue");
-    car.avgSpeed = getValueFromForm("FirstTask", "avgSpeed");
+addToShoppingList(purchase1, shoppingList);
+addToShoppingList(purchase2, shoppingList);
+
+// 3.	Покупка продукта. Функция принимает название продукта и отмечает его как купленный.
+function productPurchase(puchaseName, list) {
+    let index = list.findIndex(p => p.productName === puchaseName && !p.isBought);
+    index !== -1 ? list[index].isBought = true : alert("Ошибка при отметке!");
 }
 
-let car = makeCar(getValueFromForm("FirstTask", "producer"), getValueFromForm("FirstTask", "model"), getValueFromForm("FirstTask", "yearOfIssue"), getValueFromForm("FirstTask", "avgSpeed"));
-
-// Функция для вывода на экран информации об автомобиле
-car.toString = function() {
-    return car.producer + " " + car.model + " " + car.yearOfIssue + " года выпуска, средняя скорость: " + car.avgSpeed + " км/ч.";
-}
-
-function getInfoAboutCar() {
-    updateCar(car);
-    document.getElementById("infoAboutCar").value = car.toString();
-}
-
-// Функция для подсчета необходимого времени для преодоления переданного расстояния со средней скоростью. Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час.
-car.timeInWay = function(distance) {
-    let result = Math.round(distance / car.avgSpeed);
-
-    if (result < 4) {
-        return result;
-    } else {
-        for (let i = 0; i < result; i++) {
-            if (i % 4 === 0) {
-                result += 1;
-            }
-        }
-        return result;
-    }
-}
-
-function getTimeInWay() {
-    updateCar(car);
-    document.getElementById("timeInWay").value = car.timeInWay(getValueFromForm("FirstTask", "distance")) + " ч.";
-}
+productPurchase("Компьютерная мышь", shoppingList);
 
 // Задание 2
 
-// Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, и следующие функции для работы с этим объектом.
-function Fraction(numerator, denumerator) {
-    this.numerator = numerator;
-    this.denumerator = denumerator;
+// Создать массив, описывающий чек в магазине. Каждый элемент массива состоит из названия товара, количества и цены за единицу товара. Написать следующие функции.
+let receipt = [
+    { productName: "Телевизор", count: 10, cost: 210 },
+    { productName: "Смартфон", count: 3, cost: 590 },
+    { productName: "Наушники", count: 9, cost: 20 },
+    { productName: "Компьютерная мышь", count: 5, cost: 10 },
+    { productName: "Компьютерная клавиатура", count: 2, cost: 70 },
+];
 
-    this.NOK = function(A) {
-        let n = A.length;
-        let a = Math.abs(A[0]);
-        for (let i = 1; i < n; i++) {
-            let b = Math.abs(A[i]),
-                c = a;
-            while (a && b) { a > b ? a %= b : b %= a; }
-            a = Math.abs(c * A[i]) / (a + b);
-        }
-        return a;
-    }
+// 1.	Распечатка чека на экран.
+receipt.forEach(r => console.log(r.productName + ", " + r.count + " шт., " + "цeна за единицу: " + r.cost + "."));
 
-    this.NOD = function(A) {
-        let n = A.length;
-        let x = Math.abs(A[0]);
-        for (let i = 1; i < n; i++) {
-            let y = Math.abs(A[i]);
-            while (x && y) { x > y ? x %= y : y %= x; }
-            x += y;
-        }
-        return x;
-    }
+// 2.	Подсчет общей суммы покупки
+let sum = 0;
+receipt.forEach(r => sum += (r.cost * r.count));
+console.log("Общая сумма покупки = " + sum + " р.");
 
-    this.sum = function(fraction) {
-        if (this.denumerator !== fraction.denumerator) {
-            return new Fraction((this.numerator * fraction.denumerator) + (fraction.numerator * this.denumerator), this.NOK([this.denumerator, fraction.denumerator]));
-        } else {
-            return new Fraction(+this.numerator + +fraction.numerator, this.denumerator);
-        }
-    }
+// 3.	Получение самой дорогой покупки в чеке.
+console.log("Самая дорогая покупка в чеке - " + receipt.sort((r1, r2) => (r1.cost * r1.count) < (r2.cost * r2.count))[0].productName);
 
-    this.sub = function(fraction) {
-        if (this.denumerator !== fraction.denumerator) {
-            return new Fraction((this.numerator * fraction.denumerator) - (fraction.numerator * this.denumerator), this.NOK([this.denumerator, fraction.denumerator]));
-        } else {
-            return new Fraction(this.numerator - fraction.denumerator, this.denumerator);
-        }
-    }
-
-    this.mul = function(fraction) {
-        return new Fraction(this.numerator * fraction.numerator, this.denumerator * fraction.denumerator);
-    }
-
-    this.div = function(fraction) {
-        if (this.denumerator !== fraction.denumerator) {
-            return new Fraction(this.numerator * fraction.denumerator, this.denumerator * fraction.numerator);
-        } else {
-            return new Fraction(this.numerator - fraction.denumerator, this.denumerator);
-        }
-    }
-
-    this.red = function() {
-        let nod = this.NOD([this.numerator, this.denumerator]);
-        return new Fraction(this.numerator / nod, this.denumerator / nod);
-    }
-}
-
-let fraction_1 = new Fraction(getValueFromForm("SecondTask", "numerator_1"), getValueFromForm("SecondTask", "denumerator_1"));
-let fraction_2 = new Fraction(getValueFromForm("SecondTask", "numerator_2"), getValueFromForm("SecondTask", "denumerator_2"));
-
-function updateFunctions(fraction_1, fraction_2) {
-    fraction_1.numerator = getValueFromForm("SecondTask", "numerator_1");
-    fraction_1.denumerator = getValueFromForm("SecondTask", "denumerator_1");
-    fraction_2.numerator = getValueFromForm("SecondTask", "numerator_2");
-    fraction_2.denumerator = getValueFromForm("SecondTask", "denumerator_2");
-}
-
-function additionOfFractions() {
-    updateFunctions(fraction_1, fraction_2);
-    document.getElementById("add").value = fraction_1.sum(fraction_2).numerator + " / " + fraction_1.sum(fraction_2).denumerator;
-}
-
-function subtractionOfFractions() {
-    updateFunctions(fraction_1, fraction_2);
-    document.getElementById("sub").value = fraction_1.sub(fraction_2).numerator + " / " + fraction_1.sub(fraction_2).denumerator;
-}
-
-function fractionMultiplication() {
-    updateFunctions(fraction_1, fraction_2);
-    document.getElementById("mul").value = fraction_1.mul(fraction_2).numerator + " / " + fraction_1.mul(fraction_2).denumerator;
-}
-
-function fractionDivision() {
-    updateFunctions(fraction_1, fraction_2);
-    document.getElementById("div").value = fraction_1.div(fraction_2).numerator + " / " + fraction_1.div(fraction_2).denumerator;
-}
-
-function fractionReduction() {
-    updateFunctions(fraction_1, fraction_2);
-    document.getElementById("red_1").value = "Первая дробь после сокращения: " + fraction_1.red().numerator + " / " + fraction_1.red().denumerator + ".";
-    document.getElementById("red_2").value = "Вторая дробь после сокращения: " + fraction_2.red().numerator + " / " + fraction_2.red().denumerator + ".";
-}
+// 4.	Подсчет средней стоимости одного товара в чеке.
+console.log("Средняя стоимость одного товара в чеке: " + (sum / receipt.length).toFixed(2) + " р.");
 
 // Задание 3
 
-// Создать объект, описывающий время (часы, минуты, секунды), и следующие функции для работы с этим объектом.
-function Time() {
-    this.hours = null;
-    this.min = null;
-    this.sec = null;
+// Создать массив css-стилей (цвет, размер шрифта, выравнивание, подчеркивание и т. д.). Каждый элемент массива – это объект, состоящий из двух свойств: название стиля и значение стиля.
+let styles = [
+    { backgroundColor: "background-color: brown;" },
+    { fontSize: "font-size: xx-large;" },
+    { alignment: "text-align: center;" },
+    { underline: "border-bottom: 2px solid green;" }
+];
 
-    this.setHours = function(h) {
-        if (h < 24) {
-            this.hours = h;
-        } else {
-            alert("Ошибка при добавлении! Количество часов в сутках не может быть больше 23!")
+// Написать функцию, которая принимает массив стилей и текст, и выводит этот текст с помощью document.write() в тегах <p></p>, добавив в открывающий тег атрибут style со всеми стилями, перечисленными в массиве.
+function textOutput(someStyles, text) {
+    let str = "";
+    for (let i = 0; i < styles.length; i++) {
+        for (let style in styles[i]) {
+            str += styles[i][style] + " ";
         }
     }
 
-    this.setMinutes = function(m) {
-        if (m < 60) {
-            this.min = m;
-        }
-    }
-
-    this.setSeconds = function(s) {
-        if (s < 60) {
-            this.sec = s;
-        }
-    }
-
-    this.toString = function() {
-        return this.hours + ":" + this.min + ":" + this.sec;
-    }
-
-    this.ToSeconds = function() {
-        return this.hours * 3600 + this.min * 60 + +this.sec;
-    }
-
-    this.FromSecondsToHMS = function(timeInSec) {
-        this.setHours(timeInSec / 3600 ^ 0);
-        this.setMinutes((timeInSec - this.hours * 3600) / 60 ^ 0);
-        this.setSeconds(timeInSec - this.hours * 3600 - this.min * 60);
-    }
-
-    this.AddHours = function(userHours) {
-        let totalSec = this.ToSeconds() + (userHours * 3600)
-        this.FromSecondsToHMS(totalSec);
-    }
-
-    this.AddMinutes = function(userMinutes) {
-        let totalSec = this.ToSeconds() + (userMinutes * 60)
-        this.FromSecondsToHMS(totalSec);
-    }
-
-    this.AddSeconds = function(userSeconds) {
-        let totalSec = this.ToSeconds() + +userSeconds;
-        this.FromSecondsToHMS(totalSec);
-    }
+    document.write('<p style=' + `"${str}">` + `${text}</p>`);
 }
 
-let time = new Time();
-time.setHours(getValueFromForm("ThirdTask", "hours"));
-time.setMinutes(getValueFromForm("ThirdTask", "min"));
-time.setSeconds(getValueFromForm("ThirdTask", "sec"));
+textOutput(styles, "Рандомный текст");
 
-function updateTime(time) {
-    time.setHours(getValueFromForm("ThirdTask", "hours"));
-    time.setMinutes(getValueFromForm("ThirdTask", "min"));
-    time.setSeconds(getValueFromForm("ThirdTask", "sec"));
+// Задание 4
+
+// Создать массив аудиторий академии. Объект-аудитория состоит из названия, количества посадочных мест (от 10 до 20) и названия факультета, для которого она предназначена.
+
+let audiences = [
+    { name: "1-2", countOfSeats: 15, faculty: "Геолого-географический" },
+    { name: "2-1", countOfSeats: 11, faculty: "Математический" },
+    { name: "1-3", countOfSeats: 11, faculty: "Геолого-географический" },
+    { name: "3-5", countOfSeats: 19, faculty: "Физический" },
+    { name: "4-9", countOfSeats: 17, faculty: "Филологический" },
+    { name: "3-1", countOfSeats: 19, faculty: "Физический" },
+    { name: "2-7", countOfSeats: 18, faculty: "Математический" },
+];
+
+// 1.	Вывод на экран всех аудиторий.
+audiences.forEach(a => console.log("Номер аудитории: " + a.name + ". Количество посадочных мест: " + a.countOfSeats + ". Факультет: " + a.faculty));
+
+// 2.	Вывод на экран аудиторий для указанного факультета.
+let userFaculty = "Геолого-географический";
+audiences.forEach(a => { if (a.faculty === userFaculty) console.log(a.name) });
+
+// 3.	Вывод на экран только тех аудиторий, которые подходят для переданной группы. Объект-группа состоит из названия, количества студентов и названия факультета.
+let groups = [
+    { name: "ГЭ-21", countOfStudents: 20, faculty: "Геолого-географический" },
+    { name: "Г-41", countOfStudents: 15, faculty: "Геолого-географический" },
+    { name: "ГР-31", countOfStudents: 17, faculty: "Геолого-географический" },
+    { name: "АГ-22", countOfStudents: 19, faculty: "Математический" },
+    { name: "ВМП-41", countOfStudents: 10, faculty: "Математический" },
+    { name: "ОФ-11", countOfStudents: 19, faculty: "Физический" },
+    { name: "ОФ-21", countOfStudents: 10, faculty: "Физический" },
+    { name: "БЯ-52", countOfStudents: 16, faculty: "Филологический" },
+];
+
+function getAudience(group) {
+    audiences.forEach(a => { if (a.faculty === group.faculty && a.countOfSeats >= group.countOfStudents) console.log(a.name); });
 }
 
-function showTime() {
-    updateTime(time);
-    document.getElementById("getTime").value = time.toString();
-}
+groups.forEach(g => getAudience(g));
 
-function addHours() {
-    updateTime(time);
-    time.AddHours(getValueFromForm("ThirdTask", "addUserHours"));
-    document.getElementById("afterAddHours").value = time.toString();
-}
+// 4.	Функция сортировки аудиторий по количеству мест.
+audiences.sort((a1, a2) => a1.countOfSeats - a2.countOfSeats).forEach(a => console.log(a));
 
-function addMin() {
-    updateTime(time);
-    time.AddMinutes(getValueFromForm("ThirdTask", "addUserMin"));
-    document.getElementById("afterAddMin").value = time.toString();
-}
-
-function addSec() {
-    updateTime(time);
-    time.AddSeconds(getValueFromForm("ThirdTask", "addUserSeconds"));
-    document.getElementById("afterAddSec").value = time.toString();
-}
+// 5.	Функция сортировки аудиторий по названию (по алфавиту).
+audiences.sort((a1, a2) => a1.faculty - a2.faculty).forEach(a => console.log(a));

@@ -11,10 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5ee57e-49bd-4062-beed-bbcfa2d8b615" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/Task/JS_HW_6.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task/JS_HW_5.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task/JS_HW_6.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Task/JS_HW_7.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="HW_5" />
+        <entry key="$PROJECT_DIR$" value="HW_6" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,14 +58,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task" />
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task\JS" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -77,7 +76,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601505847093</updated>
-      <workItem from="1601505848239" duration="2045000" />
+      <workItem from="1601505848239" duration="2324000" />
+      <workItem from="1601530392440" duration="461000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1601505888064</created>
@@ -135,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601507585026</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit">
+      <created>1601507955378</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601507955378</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,24 +158,26 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601507694732">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601530794649">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601530794649" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507694732" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601506082879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506082879" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601507586093">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601507956824">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507586093" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507956824" />
     <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1601505988970">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
