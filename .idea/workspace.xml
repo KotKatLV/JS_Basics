@@ -11,19 +11,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5ee57e-49bd-4062-beed-bbcfa2d8b615" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/Img/first_book.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/second_book.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/third_book.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task/JS_HW_14.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Img/leftArrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Img/rightArrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JS/jQuery/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JS/jQuery/jquery-3.5.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task/JS_HW_15.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/css.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/html.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/js.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/next.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task/JS_HW_13.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/first_book.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/second_book.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/third_book.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task/JS_HW_14.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,10 +44,13 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="HW_12" />
+        <entry key="$PROJECT_DIR$" value="HW_14" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectId" id="1iFaZEJwRcdLVQjnfdpUEmsYD9D" />
   <component name="ProjectLevelVcsManager">
@@ -70,8 +72,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task\JS" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -209,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601535302225</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="commit">
+      <created>1601536156159</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1601536156159</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,10 +250,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506082879" />
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1601535303651">
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1601536157552">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601535303651" />
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601536157552" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507956824" />
     <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1601505988970">
       <screen x="0" y="0" width="1920" height="1040" />

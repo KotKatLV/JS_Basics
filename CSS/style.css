@@ -1,281 +1,196 @@
-.forum-container {
-    vertical-align: middle;
-    width: 65%;
-    padding: 5px;
-    margin: auto;
+.main-wrapper {
     background-color: #FBF2E9;
-    overflow: hidden;
-}
-
-.new-message {
-    text-align: center;
-    font-weight: bold;
-}
-
-.posts {
-    margin: 10px;
-    padding: 10px;
-}
-
-.user-login {
-    overflow: hidden;
-    border: 1px solid black;
-}
-
-.message {
-    margin-top: -5px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-}
-
-.user-message {
-    overflow: hidden;
-    word-wrap: break-word;
-    margin: 5px;
-}
-
-.login-name,
-.message-time {
-    margin: 5px;
-}
-
-.message-time {
-    float: right;
-}
-
-.login-name {
-    float: left;
-}
-
-.send-button {
     width: 100%;
 }
 
-.input-user-name {
-    width: 91%;
-}
-
-.input-user-message {
-    position: absolute;
-}
-
-.message-from {
-    margin-bottom: 30px;
-}
-
-.post {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.input-user-message {
-    width: 55.5%;
-}
-
-.stylizedTextForm {
+.search-form-wrapper {
+    width: 30%;
+    overflow: hidden;
     margin: auto;
-    background-color: #FBF2E9;
-    text-align: center;
-    width: 850px;
 }
 
-.books-shop-main-container {
-    width: 100%;
+.search-form {
+    border: 1px solid #4CAF50;
+    border-radius: 20px;
+    width: 60%;
+    height: 130px;
     overflow: hidden;
-    vertical-align: middle;
-    background-color: #FBF2E9;
+    margin: auto auto 25px;
+}
+
+.search-form p {
+    margin: 15px;
+}
+
+.search-p {
     text-align: center;
 }
 
-.books-shop-main-container div {
-    display: inline-block;
-    padding: 5px;
-}
-
-.first-book-wrapper,
-.second-book-wrapper,
-.third-book-wrapper {
-    text-align: center;
-    width: 270px;
-    height: 420px;
-    overflow: hidden;
-    margin: 10px;
-    border: 1px solid black;
-    background-color: white;
-}
-
-.first-book-wrapper img,
-.second-book-wrapper img,
-.third-book-wrapper img {
-    width: 250px;
-    height: 250px;
-}
-
-.book-img {
-    margin: 5px;
-}
-
-.product-description {
-    margin: 5px;
-    width: 250px;
-    height: 150px;
-}
-
-.book-price {
-    text-align: right;
-    float: right;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 35px;
-}
-
-.button {
-    width: 230px;
-    text-align: center;
-}
-
-.select-button {
-    cursor: pointer;
-    width: 100%;
-}
-
-.book-name {
-    margin: 0;
-    padding: 0;
-}
-
-.full-product-descr {
-    width: 250px;
-    height: 100px;
-}
-
-.author {
-    float: left;
-}
-
-.order-wrapper {
-    width: 370px;
-    height: 420px;
-    overflow: hidden;
-    margin: 10px;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.order-wrapper div {
-    display: inline-block;
-}
-
-.inputs {
-    text-align: right;
-}
-
-.inputs input {
-    width: 229px;
-}
-
-.order-table {
-    margin: 20px;
-}
-
-.labels {
-    text-align: left;
-}
-
-.button-buy {
-    text-align: center;
-    width: 230px;
-}
-
-.selection-string {
-    text-align: center;
-    border-bottom: 1px solid gray;
-}
-
-.student-attendance-log-wrapper div {
-    text-align: center;
-    margin: auto;
-    background-color: #FBF2E9;
-    padding: 4px;
-    width: 51%;
-}
-
-#dropdownListOfGropus,
-#dropdownListOfLessons {
-    margin: 8px;
-}
-
-.lesson-topic {
+#typelist {
     width: 78%;
 }
 
-.log-table {
-    margin: auto;
-    border-collapse: collapse;
-    width: 100%;
+#typelist option {
+    width: 78%;
 }
 
-.log-table tr {
-    border-bottom: 1px solid red;
-}
-
-.save-log-button {
+.submit-button {
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 15px;
     text-align: center;
-    margin-top: 5px;
-    width: 100%;
+    width: 85%;
+    border: 0.1px solid #4CAF50;
+    outline: none;
 }
 
-.ticket-market-wrapper div {
+#titleInput {
+    margin-left: 15px;
+}
+
+#typelist {
+    margin-left: 14px;
+}
+
+.films-main-wrapper {
     text-align: center;
-    margin: auto;
-    background-color: #FBF2E9;
-    padding: 4px;
-    width: 81%;
+    width: 95%;
+    padding: 5px;
 }
 
-#listOfDirections {
+.films-main-wrapper div {
+    display: inline-block;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.poster-img-wrapper {
+    width: 190px;
+    height: 280px;
+    margin: 15px 31px 15px 15px;
+}
+
+.poster-img {
+    margin: 0;
+    width: 190px;
+    height: 280px;
+}
+
+.poster-img img {
+    height: 90%;
+    width: 90%;
+}
+
+.description {
+    float: right;
+    text-align: left;
+    margin-top: 55px;
+}
+
+.film-wrapper {
+    text-align: left;
+    border-radius: 15px;
+    border: 1px solid #4CAF50;
+    margin: 10px;
+}
+
+.film-wrapper div {
+    display: inline-block;
+    width: 165px;
+}
+
+.pagination {
+    text-align: center;
+    margin: auto auto 15px;
+}
+
+.pagination button {
+    cursor: pointer;
+    width: 50px;
+    height: 35px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.details-button {
+    cursor: pointer;
+    width: 90%;
+}
+
+.leftArrowPict,
+.rightArrowPict {
+    cursor: pointer;
+    position: relative;
+    width: 5%;
+    bottom: 110px;
+}
+
+.film-description-wrapper {
+    margin: auto auto 15px;
+    border: 1px solid gray;
+    width: 650px;
+    padding: 5px;
+}
+
+.film-description-wrapper div {
+    display: inline-block;
+    height: 500px;
+}
+
+.film-description-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.film-description-img {
     margin-right: 10px;
 }
 
-.search-direction-button {
-    cursor: pointer;
-    width: 20%;
+.full-film-description {
+    float: right;
 }
 
-.train-seats {
-    border-collapse: separate;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 10px;
-    margin: auto;
+.table {
+    margin-top: 10px;
+    width: 305px;
+    height: 100%;
 }
 
-.train-seats table tr td {
-    width: 36px;
-    border: 1px solid gray;
-    margin: 0;
+td:first-child {
+    padding-right: 40px;
+    padding-bottom: 15px;
 }
 
-.train-seats table {
-    border: 0.5px solid gray;
-}
-
-.ordered-tickets-table {
-    margin: auto;
-    text-align: center;
-    width: 50%;
-    border-collapse: collapse;
-    border: 0.5px solid gray;
-}
-
-.ordered-tickets-table td,
-th {
-    padding: 3px;
-    border: 1px solid black;
-}
-
-.ordered-tickets-table caption {
-    text-align: left;
+td:last-child {
+    padding-bottom: 15px;
 }
