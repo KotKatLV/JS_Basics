@@ -2,133 +2,129 @@
 
 // Задание 1
 
-// Создать html-страницу для ввода имени пользователя. Необходимо проверять каждый символ, который вводит пользователь.Если он ввел цифру, то не отображать ее в input.
-document.forms.inputField.inputName.oninput = () => {
-    document.getElementById("inputName").value = document.getElementById("inputName").value.replace(/\d/g, "");
-}
+// Создать html-страницу со списком ссылок. Ссылки на внешние источники (которые начинаются с http://) необходимо подчеркнуть пунктиром. Искать такие ссылки в списке и устанавливать им дополнительные стили необходимо с помощью JS.
+
+let ref = Array.from(document.querySelectorAll('#ul-references>li>a'));
+ref.forEach(a => {
+    if (a.innerHTML.search(/[https:]\/\//) !== -1) {
+        a.style.borderBottom = "1px dashed #000080";
+    }
+});
 
 // Задание 2
 
-//Создать html-страницу с кнопкой Открыть и модальным окном. На модальном окне должен быть текст и кнопка Закрыть. Изначально модальное окно не отображается.При клике на кнопку Открыть появляется модальное окно, на кнопку Закрыть – исчезает.
-document.getElementById("openModalWindow").addEventListener("click", () => {
-    document.getElementById("prompt-form-container").style.visibility = "visible";
-})
+// Создать html-страницу с деревом вложенных директорий.При клике на элемент списка, он должен сворачиваться или
+// разворачиваться.При наведении на элемент, шрифт должен становится жирным(с помощью CSS).
 
-document.getElementById("cancelButton").addEventListener("click", () => {
-    document.getElementById("prompt-form-container").style.visibility = "hidden";
-})
+for (let li of tree.querySelectorAll('li')) {
+    let span = document.createElement('span');
+    li.prepend(span);
+    span.append(span.nextSibling);
+}
+
+tree.onclick = function(event) {
+    if (event.target.tagName !== 'SPAN') {
+        return;
+    }
+    let childrenContainer = event.target.parentNode.querySelector('ul');
+    if (!childrenContainer) return;
+    childrenContainer.hidden = !childrenContainer.hidden;
+}
 
 // Задание 3
 
-// Создать html-страницу с футбольным полем, которое занимает всю ширину и высоту экрана, и мячом размером 100 на 100 пикселей.Сделать так, чтобы при клике мышкой по полю, мяч плавно перемещался на место клика. Учтите: необходимо, чтобы центр мяча останавливался именно там, где был совершен клик мышкой.Также предусмотрите, чтобы мяч не выходил за границы поля.
+// Создать html-страницу со списком книг. При щелчке на элемент, цвет текста должен меняться на оранжевый. При повторном щелчке на другую книгу, предыдущей необходимо возвращать прежний цвет.Если при клике мышкой была зажата клавиша Ctrl, то элемент добавляется / удаляется из выделенных.Если при клике мышкой была зажата клавиша Shift, то к выделению добавляются все элементы в промежутке от предыдущего кликнутого до текущего.
 
-field.onclick = function(event) {
-
-    let fieldCoords = this.getBoundingClientRect();
-
-    let ballCoords = {
-        top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
-        left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
-    };
-
-    if (ballCoords.top < 0) ballCoords.top = 0;
-
-    if (ballCoords.left < 0) ballCoords.left = 0;
-
-    if (ballCoords.left + ball.clientWidth > field.clientWidth) {
-        ballCoords.left = field.clientWidth - ball.clientWidth;
-    }
-
-    if (ballCoords.top + ball.clientHeight > field.clientHeight) {
-        ballCoords.top = field.clientHeight - ball.clientHeight;
-    }
-
-    ball.style.left = ballCoords.left + 'px';
-    ball.style.top = ballCoords.top + 'px';
-}
-
-// Задание 4
-
-// Создать html-страницу со светофором и кнопкой, которая переключает светофор на следующий цвет.
-
-let trafficRound = document.querySelectorAll(".round");
-let currentRound = 1;
-
-document.querySelector("#button-next").addEventListener("click", function() {
-
-    switch (currentRound) {
-        case 0:
-            trafficRound[2].style.backgroundColor = "unset";
-            trafficRound[0].style.backgroundColor = "red";
-            break;
-        case 1:
-            trafficRound[0].style.backgroundColor = "unset";
-            trafficRound[1].style.backgroundColor = "yellow";
-            break;
-        case 2:
-            trafficRound[1].style.backgroundColor = "unset";
-            trafficRound[2].style.backgroundColor = "green";
-            break;
-    }
-
-    if (currentRound++ === 2) currentRound = 0;
-});
-
-// Задание 5
-
-// Создать html-страницу со списком книг. 
-// При щелчке на книгу, цвет фона должен меняться на оранжевый. Учтите, что при повторном щелчке на другую книгу, предыдущей – необходимо возвращать прежний цвет.
+let arrOfLiElems = Array.from(document.querySelectorAll('#books-list>li'));
+let changeColor = "orange";
 
 function clearBackColorInOL() {
-    Array.from(document.querySelectorAll('#books-list>li')).forEach(e => e.style.backgroundColor = "unset");
+    arrOfLiElems.forEach(e => e.style.backgroundColor = "unset");
+}
+
+function findLastClickedElemIndex() {
+    for (let i = arrOfLiElems.length - 1; i >= 0; i--) {
+        if (arrOfLiElems[i].style.backgroundColor === changeColor)
+            return i;
+    }
+}
+
+function fillBackColor(leftBorder, rightBorder) {
+
+    if (leftBorder === rightBorder) {
+        arrOfLiElems[leftBorder].style.backgroundColor = changeColor;
+    }
+
+    for (let i = leftBorder; i < rightBorder - 1; i++) {
+        arrOfLiElems[i].style.backgroundColor = changeColor;
+    }
 }
 
 document.querySelector(".books-list").addEventListener("click", () => {
     let elem = document.querySelector(`.${event.target.className}`);
-    if (elem.style.backgroundColor === "orange") {
+
+    if (elem.style.backgroundColor === changeColor) {
         elem.style.backgroundColor = "unset";
 
+    } else if (event.ctrlKey) {
+        elem.style.backgroundColor = changeColor;
+    } else if (event.shiftKey) {
+        if (elem.id < arrOfLiElems.findIndex(e => e.style.backgroundColor === changeColor)) {
+            let tmp = arrOfLiElems.findIndex(e => e.style.backgroundColor === changeColor);
+            fillBackColor(elem.id, ++tmp)
+        } else {
+            let lastClicked = findLastClickedElemIndex();
+            lastClicked > elem.id ? fillBackColor(elem.id, lastClicked) : fillBackColor(lastClicked, elem.id);
+        }
     } else {
         clearBackColorInOL();
-        elem.style.backgroundColor = "orange";
+        elem.style.backgroundColor = changeColor;
     }
 });
 
-// Задание 6
+// Задание 4 
 
-// Создать html-страницу с несколькими кнопками.
-// При наведении на кнопку, должна появляться подсказка с текстом. По умолчанию – подсказка появляется сверху от кнопки.Но если она не помещается сверху от кнопки, тогда отображается снизу.
+// Создать html-страницу для отображения / редактирования текста.При открытии страницы текст отображается с помощью тега div.При нажатии Ctrl + E, вместо div появляется textarea с тем же текстом, который теперь можно редактировать.При нажатии Ctrl + S, вместо textarea появляет div с уже измененным текстом.Не забудьте выключить поведение по умолчанию для этих сочетаний клавиш.
 
-let tooltipElem;
+document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.keyCode === 69) {
+        e.preventDefault();
+        let pText = document.getElementById("sourceText");
+        pText.style.visibility = "hidden";
+        let textArea = document.createElement("textarea");
+        textArea.setAttribute("id", "textArea");
+        textArea.style.height = "200px";
+        textArea.style.width = "100%";
+        textArea.value = pText.innerHTML;
+        document.getElementById("div-text").removeChild(pText);
+        document.getElementById("div-text").appendChild(textArea);
+    } else if (e.ctrlKey && e.keyCode === 83) {
+        e.preventDefault();
+        let textArea = document.getElementById("textArea");
+        let pText = document.createElement("p");
+        pText.setAttribute("id", "sourceText");
+        pText.innerHTML = document.getElementById("textArea").value;
+        document.getElementById("div-text").appendChild(pText);
+        document.getElementById("div-text").removeChild(textArea);
+    }
+})
 
-document.onmouseover = function(event) {
-    let target = event.target;
+//Задание 5
 
-    let tooltipHtml = target.dataset.tooltip;
-    if (!tooltipHtml) return;
+// Создать html-страницу с большой таблицей.
+// При клике по заголовку колонки, необходимо отсортировать данные по этой колонке.Например: на скриншоте люди отсортированы по возрасту. Учтите, что числовые значения должны сортироваться как числа, а не как строки.
 
-    tooltipElem = document.createElement('div');
-    tooltipElem.className = 'tooltip';
-    tooltipElem.innerHTML = tooltipHtml;
-    document.body.append(tooltipElem);
+function headerClick(event) {
+    let arr = [];
+    let table = document.getElementById("table");
 
-    let coords = target.getBoundingClientRect();
-
-    let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
-    if (left < 0) left = 0;
-
-    let top = coords.top - tooltipElem.offsetHeight - 5;
-    if (top < 0) {
-        top = coords.top + target.offsetHeight + 5;
+    for (let i = 1; i < table.rows.length; i++) {
+        arr.push(table.rows[i].cells[event.cellIndex].innerHTML);
     }
 
-    tooltipElem.style.left = left + 'px';
-    tooltipElem.style.top = top + 'px';
-};
+    arr.sort((x, y) => x < y ? -1 : 1)
 
-document.onmouseout = function() {
-    if (tooltipElem) {
-        tooltipElem.remove();
-        tooltipElem = null;
+    for (let i = 1, j = 0; i < table.rows.length; i++, j++) {
+        table.rows[i].cells[event.cellIndex].innerHTML = arr[j];
     }
-};
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Kapatkov_JS_HW_12_Part_1</title>
+</head>
+
+<body>
+
+    <p>
+        Создать html-страницу со списком ссылок. Ссылки на внешние источники (которые начинаются с http://) необходимо подчеркнуть пунктиром. Искать такие ссылки в списке и устанавливать им дополни-тельные стили необходимо с помощью JS.
+    </p>
+
+    <div class="ul-ref">
+        <ul id="ul-references">
+            <li>
+                <a href="index.html" id="index">index.html</a>
+            </li>
+            <li>
+                <a href="https://google.com" id="google">https://google.com</a>
+            </li>
+            <li>
+                <a href="https://itstep.org" id="itstep">https://itstep.org</a>
+            </li>
+            <li>
+                <a href="https://mystat.itstep.org" id="mystat">https://mystat.itstep.org</a>
+            </li>
+            <li>
+                <a href="/img/cat.jpg" id="cat">/img/cat.jpg</a>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p>
+        Создать html-страницу с деревом вложенных директорий. При клике на элемент списка, он должен сворачиваться или разворачиваться. При наведении на элемент, шрифт должен ста-новится жирным (с помощью CSS).
+    </p>
+
+    <ul class="tree" id="tree">
+        <li>This PC
+            <ul>
+                <li>Local Disk(C:)
+                    <ul>
+                        <li>Program Files</li>
+                        <li>Users</li>
+                        <li>Windows</li>
+                    </ul>
+                </li>
+
+                <li>Local Disk(D:)
+                    <ul>
+                        <li>Folder 1</li>
+                        <li>Folder 2</li>
+                        <li>Folder 2</li>
+                    </ul>
+                </li>
+
+                <li>Local Disk(E:)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <p>
+        Создать html-страницу со списком книг. При щелчке на элемент, цвет текста должен меняться на оранжевый. При повторном щелчке на другую книгу, предыдущей необходимо возвращать прежний цвет.Если при клике мышкой была зажата клавиша Ctrl, то элемент добавляется
+        / удаляется из выделенных.Если при клике мышкой была зажата клавиша Shift, то к выделению добавляются все элементы в промежутке от предыдущего кликнутого до текущего.
+    </p>
+
+    <ol id="books-list" class="books-list">
+        <li id="1" class="first-book">Книга 1</li>
+        <li id="2" class="second-book">Книга 2</li>
+        <li id="3" class="third-book">Книга 3</li>
+        <li id="4" class="fourth-book">Книга 4</li>
+        <li id="5" class="fifth-book">Книга 5</li>
+    </ol>
+
+    <hr>
+
+    <p>
+        Создать html-страницу для отображения/редактирования текста. При открытии страницы текст отображается с помощью тега div. При нажатии Ctrl+E, вместо div появляется textarea с тем же текстом, который теперь можно редактировать. При нажатии Ctrl+S, вместо
+        textarea появляет div с уже измененным текстом. Не забудьте выключить поведение по умолчанию для этих сочетаний клавиш.
+    </p>
+
+    <div>
+        <p>
+            Нажмите Ctrl + E для изменения текста
+        </p>
+
+        <p>
+            Нажмите Ctrl + S для сохранения текста
+        </p>
+
+        <hr class="light-hr">
+
+        <div id="div-text">
+            <p id="sourceText">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus magni, eum ipsa repellendus necessitatibus quidem ipsum dolorum voluptatibus dicta, optio esse officia, blanditiis unde! Quia obcaecati accusamus perferendis omnis sapiente. Adipisci nemo,
+                minima magnam laboriosam quos veniam impedit, necessitatibus accusamus nulla animi rem recusandae tempora, rerum labore ex delectus dolorem vitae veritatis voluptas officiis est temporibus. Similique soluta blanditiis mollitia? Exercitationem
+                odit iste repellendus culpa provident ea blanditiis debitis nisi illum. Dicta numquam placeat veniam corporis laborum quam corrupti expedita adipisci quae, modi enim architecto iure deleniti, ex quos? Fugiat. Voluptas, possimus. Amet nobis
+                excepturi sed autem, praesentium non quibusdam, ex ea tempora mollitia, totam cupiditate eos neque consequuntur vero reprehenderit numquam sit illum natus? Minus consequatur ullam non quaerat? Modi nulla quam aut temporibus consequatur
+                tempora, illo porro, aperiam saepe inventore voluptatum minima exercitationem ex tempore totam dicta necessitatibus? Eius nesciunt hic quis magnam ipsum fugiat commodi deleniti iste.
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <p>
+        Создать html-страницу с большой таблицей. При клике по заголовку колонки, необходимо отсортировать данные по этой колонке.Например: на скриншоте люди отсортированы по возрасту. Учтите, что числовые значения должны сортироваться как числа, а не как строки.
+    </p>
+
+    <table id="table">
+        <tr class="table-headers">
+            <th onclick="headerClick(this)">Имя</th>
+            <th onclick="headerClick(this)">Фамилия</th>
+            <th onclick="headerClick(this)">Возраст</th>
+            <th onclick="headerClick(this)">Компания</th>
+        </tr>
+
+        <tr>
+            <td>Ирвин</td>
+            <td>Якобс</td>
+            <td>86</td>
+            <td>Qualcomm</td>
+        </tr>
+
+        <tr>
+            <td>Дженсен</td>
+            <td>Хуанг</td>
+            <td>57</td>
+            <td>NVIDIA</td>
+        </tr>
+
+        <tr>
+            <td>Уолтер</td>
+            <td>Сандерс</td>
+            <td>83</td>
+            <td>AMD</td>
+        </tr>
+
+        <tr>
+            <td>Билл</td>
+            <td>Гейтс</td>
+            <td>64</td>
+            <td>Microsoft</td>
+        </tr>
+
+        <tr>
+            <td>Гордон</td>
+            <td>Мур</td>
+            <td>91</td>
+            <td>Intel</td>
+        </tr>
+    </table>
+
+    <script src="JS/app.js"></script>
+</body>
+
+</html>
