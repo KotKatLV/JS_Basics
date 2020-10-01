@@ -2,228 +2,194 @@
 
 // Задание 1
 
-// Реализовать класс, описывающий окружность. В классе должны быть следующие компоненты:
-class Circle {
+// Реализовать класс, описывающий простой маркер. В классе должны быть следующие компоненты:
+class Marker {
 
-    //поле, хранящее радиус окружности
-    constructor(radius) {
-        this.radius = radius;
+    constructor() {
+        // цвет маркера
+        this.color = "";
+
+        // количество(%) чернил
+        this.inkQuantity = 100;
+
+        // один не пробельный символ – это 0,5% чернил в маркере
+        this.oneSymbToInk = 0.5;
     }
 
-    // get-свойство, возвращающее радиус окружности
-    get getRadius() {
-        return this.radius;
-    }
+    // метод для печати (метод принимает строку и выводит текст соответствующим цветом; текст выводится до тех пор, пока в маркере есть чернила; один не пробельный символ – это 0,5% чернил в маркере).
+    print(userString) {
 
-    // set-свойство, устанавливающее радиус окружности
-    set setRadius(radius) {
-        this.radius = radius;
-    }
+        if (this.inkQuantity <= 0) {
+            alert("В маркере нет чернил!");
 
-    // get-свойство, возвращающее диаметр окружности
-    get getDiameter() {
-        return 2 * this.getRadius;
-    }
-
-    // метод, вычисляющий площадь окружности
-    calcAreaCircle() {
-        return Math.PI * this.getRadius * this.getRadius;
-    }
-
-    // метод, вычисляющий длину окружности
-    calcCircumference() {
-        return 2 * Math.PI * this.getRadius * this.getRadius;
+        } else {
+            let countOfSymb = userString.match(/\S/gi).length;
+            let countOfNecessaryInkToPrint = countOfSymb * this.oneSymbToInk;
+            if (countOfNecessaryInkToPrint > this.inkQuantity) {
+                document.write(`<p style="color:${this.color}">${userString.substr(0, this.inkQuantity * this.oneSymbToInk)}</p>`)
+                this.inkQuantity = 0;
+            } else {
+                document.write(`<p style="color:${this.color}">${userString}</p>`);
+                this.inkQuantity -= countOfNecessaryInkToPrint;
+                if (this.inkQuantity < 0) {
+                    alert("В маркере закончились чернила!");
+                    this.inkQuantity = 0;
+                }
+            }
+        }
     }
 }
 
-// Продемонстрировать работу свойств и методов
-let circle1 = new Circle(12);
-console.log(`Радиус окружности: ${circle1.getRadius}, диаметр: ${circle1.getDiameter}, площадь: ${(circle1.calcAreaCircle()).toFixed(2)}, длина: ${(circle1.calcCircumference()).toFixed(2)}`);
+// Реализовать класс, описывающий заправляющийся маркер, унаследовав его от простого маркера и добавив метод для заправки маркера.
+class MarkerRefueling extends Marker {
+    static RefuelMarker(marker) {
+        marker.inkQuantity = 100;
+    }
+}
+
+let marker = new Marker();
+marker.color = "red";
+
+while (true) {
+    marker.print("Ля ля");
+    marker.print("Ля ля")
+    marker.print("Ля ля")
+    marker.print("r\;jkgeroihjgegpwekfweguweiodplewighreifoplqwldkf43tfwyuhijdokplwqfewgyhfdjqwo-pflreghre87fghwe0fkjewiofjwefgjwe-9gjew8gjew0gijweiugewhjgweihgwe9g");
+    if (marker.inkQuantity <= 0) {
+        MarkerRefueling.RefuelMarker(marker);
+        alert("Маркер был заправлен!");
+        break;
+    }
+}
 
 // Задание 2
 
-// Реализовать класс, описывающий html элемент. Класс HtmlElement должен содержать внутри себя:
-
-class HtmlElement {
-
-    // название тега, самозакрывающийся тег или нет, текстовое содержимое, массив атрибутов, массив стилей, массив вложенных таких же тегов
-    constructor(tagName, isSelfClosing) {
-        this.tagName = String(tagName);
-        this.isSelfClosing = isSelfClosing;
-        this.innerText = "";
-        this.attributes = new Map();
-        this.styles = new Map();
-        this.htmlString = "";
+// Реализуйте класс ExtendedDate, унаследовав его от стандартного класса Date и добавив следующие возможности:
+class ExtendedDate extends Date {
+    constructor() {
+        super();
+        this.daysFrom_1_To_19 = new Map();
+        this.secondDigitMap = new Map();
+        this.months = new Map();
+        this.months.set(0, "Января").set(1, "Февраля").set(2, "Марта").set(3, "Апреля").set(4, "Мая").set(5, "Июня").set(6, "Июля").set(7, "Августа").set(8, "Сентября").set(9, "Октября").set(10, "Ноября").set(11, "Декабря");
+        this.daysFrom_1_To_19.set(1, "Первое").set(2, "Второе").set(3, "Третье").set(4, "Четвертое").set(5, "Пятое").set(6, "Шестое").set(7, "Седьмое").set(8, "Восьмое").set(9, "Девятое").set(10, "Десятое").set(11, "Одиннадцатое").set(12, "Двенадцатое").set(13, "Тринадцатое").set(14, "Четырнадцатое").set(15, "Пятнадцатое").set(16, "Шестнадцатое").set(17, "Семнадцатое").set(18, "Восемнадцатое").set(19, "Девятнацдцатое");
+        this.secondDigitMap.set(2, "двадцать").set(3, "тридцать");
     }
 
-    // метод для установки атрибута
-    setAttribute(attributeName, attributeValue) {
-        this.attributes.set(attributeName, attributeValue);
-    }
-
-    // метод для установки стиля
-    setStyle(styleName, styleValue) {
-        this.styles.set(styleName, styleValue);
-    }
-
-    // метод для добавления вложенного элемента в конец текущего элемента;
-    addElementToTheEnd(element) {
-        this.innerText += " " + element.getHtml();
-    }
-
-    //метод для добавления вложенного элемента в начало текущего элемента
-    addElementToTheBeginning(element) {
-        this.innerText = element.getHtml() + " " + this.getHtml();
-    }
-
-    getHtml() {
-
-        if (this.htmlString.length > 0)
-            return this.htmlString;
-
-        let style = "";
-        let attribute = "";
-
-        this.styles.forEach((value, key) => style += key + value);
-        this.attributes.forEach((value, key) => attribute += key + value);
-
-        if (this.styles.size > 0) {
-            this.isSelfClosing ? this.htmlString = `<${this.tagName} style="${style}" ${attribute}>` : this.htmlString = `<${this.tagName} style="${style}" ${attribute}>${this.innerText}</${this.tagName}>`;
-        } else {
-            this.isSelfClosing && this.styles.size > 0 ? this.htmlString = `<${this.tagName} ${attribute}>` : this.htmlString = `<${this.tagName} ${attribute}>${this.innerText}</${this.tagName}>`;
+    // метод для вывода даты (числа и месяца) текстом
+    getTextDate() {
+        let now = new Date();
+        let date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let actualDay = date.getDate();
+        let actualMonth = date.getMonth();
+        if (actualDay < 20) {
+            return this.daysFrom_1_To_19.get(actualDay) + " " + this.months.get(actualMonth);
+        } else if (actualDay > 19 && actualDay < 32) {
+            let str = actualDay.toString().split("");
+            return this.secondDigitMap.get(str[0]) + " " + this.daysFrom_1_To_19(str[1]) + " " + this.months.get(actualMonth);
         }
+    }
 
-        return this.htmlString;
+    // метод для проверки – это прошедшая дата или будущая (если прошедшая, то метод возвращает false; если будущая или текущая, то true)
+    isFutureDate(date) {
+        let userDate = new Date(date);
+        let now = new Date();
+        let currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return currentDate < userDate;
+    }
+
+    // метод для проверки – високосный год или нет
+    isLeapYear(userYear) {
+        return (userYear % 400 === 0 || (userYear % 4 === 0 && userYear % 100 !== 0));
+    }
+
+    // метод, возвращающий следующую дату
+    // "следующую дату" я понял как следующий день
+    getNextDate(sourceDate) {
+        let userDate = new Date(sourceDate);
+        userDate.setDate(userDate.getDate() + 1);
+        return userDate.toDateString();
     }
 }
 
-// Раскомментировать для проверки результата 2 задания
-{
-    // let wrapper = new HtmlElement("div", false);
-    // wrapper.setAttribute(`id = `, `"wrapper"`);
-    // wrapper.setStyle("display: ", "flex;");
+let myDate = new ExtendedDate();
+console.log(myDate.getTextDate());
 
-    // let a_1 = new HtmlElement("a", false);
-    // a_1.setAttribute("href = ", `"https://www.lipsum.com/" `);
-    // a_1.setAttribute("target = ", `"_blank"`);
-    // a_1.innerText = "More...";
+myDate.isFutureDate("2021-01-26") ? console.log("Указанная дата является будующей") : console.log("Указанная дата явяется прошлой");
 
-    // let par_1 = new HtmlElement("p", false);
-    // par_1.setStyle("text-align: ", "justify;");
-    // par_1.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.Consequatur accusamus sequi laudantium eaque soluta in nisi, enim natus dolores illum quis dicta consectetur molestiae repellendus perspiciatis eveniet, debitis eum.Amet.Soluta commodi esse istemagni facilis possimus ad dicta reprehenderit laudantium ? Veritatis quis, quidem architecto delectus tempora sapiente ? Accusantium et perspiciatis fugit libero sed hic veniam commodi pariatur totam porro.Laborum iusto labore quis inventore quo! Molestiaefacilis perspiciatis illum sequi id iste quisquam maiores nam laborum nulla! Quidem pariatur accusantium tempora enim, earum aliquid obcaecati cupiditate modi nostrum ad.Quam doloremque magni soluta ? Eveniet, temporibus ipsum ex vitae veritatis mollitia.";
-    // par_1.addElementToTheEnd(a_1);
+myDate.isLeapYear(2000) ? console.log("Указанный Вами год является високосным") : console.log("Указанный Вами год не является високосным");
 
-    // let img = new HtmlElement("img", true);
-    // img.setStyle("width: ", "100%");
-    // img.setAttribute("src = ", `"Images/004_lorem.jpg "`);
-    // img.setAttribute("alt = ", `"Lorem Ipsum"`);
-
-    // let h3 = new HtmlElement("h3", false);
-    // h3.innerText = "What is Lorem Ipsum?"
-
-    // let div2 = new HtmlElement("div", false);
-    // div2.setStyle("width: ", "300px;");
-    // div2.setStyle("margin: ", "10px;");
-
-    // div2.addElementToTheEnd(h3);
-    // div2.addElementToTheEnd(img);
-    // div2.addElementToTheEnd(par_1);
-    // wrapper.addElementToTheEnd(div2);
-    // wrapper.addElementToTheEnd(div2);
-
-    // document.write(wrapper.getHtml());
-}
+console.log(myDate.getNextDate("2021-01-26"));
 
 // Задание 3
 
-// Реализовать класс, который описывает css класс. Класс CssClass должен содержать внутри себя
-class CSSClass {
-    constructor(className) {
-        // название css класса;
-        this.className = className;
-
-        // массив стилей
-        this.styles = new Map();
-    }
-
-    // метод для установки стиля
-    setStyle(styleName, styleValue) {
-        this.styles.set(styleName, styleValue);
-    }
-
-    // метод для удаления стиля
-    delStyle(styleName) {
-        this.styles.delete(styleName);
-    }
-
-    // метод getCss(), который возвращает css код в виде стро-ки.
-    getCSS() {
-        let style = "";
-        this.styles.forEach((value, key) => style += key + value + "\n" + " ");
-        return `.${this.className} {\n ${style.trim()} \n}`;
+// Реализовать класс Employee, описывающий работника, и создать массив работников банка.
+class Employee {
+    constructor(firstName, secondName, position) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.position = position;
     }
 }
+
+let emp1 = new Employee("Иван", "Иванов", "Генеральный директор");
+let emp2 = new Employee("Петр", "Петров", "Зам. генерального директора");
+let emp3 = new Employee("Алексей", "Алексеев", "Начальник самого важного отдела");
+let emp4 = new Employee("Василий", "Васильев", "Начальник менее важного отдела");
+
+let employees = [emp1, emp2, emp3, emp4];
+
+// Реализовать класс EmpTable для генерации html кода таблицы со списком работников банка. Массив работников необходимо передавать через конструктор, а получать html код с помощью метода getHtml(). Создать объект класса EmpTable и вывести на экран результат работы метода getHtml().
+class EmpTable {
+    constructor(employees) {
+        this.employees = employees;
+    }
+
+    getHtml() {
+        let result =
+            `<table>
+                <caption>Работники банка</caption>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Должность</th>
+                    </tr>`;
+
+        for (let i = 0; i < this.employees.length; i++) {
+            result +=
+                `<tr>
+                    <td>${this.employees[i].firstName}</td>
+                    <td>${this.employees[i].secondName}</td>
+                    <td>${this.employees[i].position}</td>
+                <tr>`;
+        }
+        result += `</table>`;
+        return result;
+    }
+}
+
+// Раскомментировать для проверки результата 3 задания
+// let emptable1 = new EmpTable(employees);
+//document.write(emptable1.getHtml());
 
 // Задание 4
 
-// Реализовать класс, описывающий блок html документ. Класс HtmlBlock должен содержать внутри себя:
-class HTMLBlock {
-    constructor(css, html) {
-        this.CSS = css;
-        this.HTML = html;
+// Реализовать класс StyledEmpTable, который наследуется от класса EmpTable. Добавить метод getStyles(), который возвращает строку со стилями для таблицы в тегах style. Переопределить метод getHtml(), который добавляет стили к тому, что возвращает метод getHtml() из родительского класса. Создать объект класса StyledEmpTable и вывести на экран результат работы метода getHtml().
+class StyledEmpTable extends EmpTable {
+
+    constructor(employees) {
+        super(employees);
     }
 
-    getCode() {
-        let styles = "<style>";
-        this.CSS.forEach(styleClass => styles += styleClass.getCSS() + "\n");
-        styles += "</style>";
-        return styles + this.HTML.getHtml();
+    // Поскольку в ТЗ не было указано каких-либо конкретных стилей и формата их хранения в текущем классе - я сделал это в виде строки с уже опрделенными стилями
+    getStyles() {
+        return `<style> table {border: 1px solid grey;} th {border: 1px solid grey;}td {border: 1px solid grey;}</style>`;
+    }
+
+    getHtml() {
+        return this.getStyles() + super.getHtml();
     }
 }
 
-let wrapClass = new CSSClass("wrap");
-wrapClass.setStyle("display:", " flex;");
-
-let blockClass = new CSSClass("block");
-blockClass.setStyle("width:", " 300px;");
-blockClass.setStyle("margin:", " 10px;");
-
-let imgClass = new CSSClass("img");
-imgClass.setStyle("width:", " 100%;");
-
-let textClass = new CSSClass("text");
-textClass.setStyle("text-align:", " justify;");
-
-let wrapper = new HtmlElement("div", false);
-wrapper.setAttribute(`id = `, `"wrapper"`);
-wrapper.setAttribute(`class = `, `"wrap"`)
-
-let a_1 = new HtmlElement("a", false);
-a_1.setAttribute(`href = `, `"https://www.lipsum.com/" `);
-a_1.setAttribute(`target = `, `"_blank"`);
-a_1.innerText = "More...";
-
-let par_1 = new HtmlElement("p", false);
-par_1.setAttribute(`class = `, `"text"`);
-par_1.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.Consequatur accusamus sequi laudantium eaque soluta in nisi, enim natus dolores illum quis dicta consectetur molestiae repellendus perspiciatis eveniet, debitis eum.Amet.Soluta commodi esse istemagni facilis possimus ad dicta reprehenderit laudantium ? Veritatis quis, quidem architecto delectus tempora sapiente ? Accusantium et perspiciatis fugit libero sed hic veniam commodi pariatur totam porro.Laborum iusto labore quis inventore quo! Molestiaefacilis perspiciatis illum sequi id iste quisquam maiores nam laborum nulla! Quidem pariatur accusantium tempora enim, earum aliquid obcaecati cupiditate modi nostrum ad.Quam doloremque magni soluta ? Eveniet, temporibus ipsum ex vitae veritatis mollitia.";
-par_1.addElementToTheEnd(a_1);
-
-let img = new HtmlElement("img", true);
-img.setAttribute(`class = `, `"img"`);
-img.setAttribute(`src = `, `"Images/004_lorem.jpg "`);
-img.setAttribute(`alt = `, `"Lorem Ipsum"`);
-
-let h3 = new HtmlElement("h3", false);
-h3.innerText = "What is Lorem Ipsum?"
-
-let div2 = new HtmlElement("div", false);
-div2.setAttribute(`class = `, `"block"`);
-
-div2.addElementToTheEnd(h3);
-div2.addElementToTheEnd(img);
-div2.addElementToTheEnd(par_1);
-wrapper.addElementToTheEnd(div2);
-wrapper.addElementToTheEnd(div2);
-
-let htmlBlock = new HTMLBlock([wrapClass, blockClass, imgClass, textClass], wrapper);
-document.write(htmlBlock.getCode());
+let semt = new StyledEmpTable(employees);
+document.write(semt.getHtml());
