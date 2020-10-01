@@ -133,7 +133,6 @@ function createCalendar() {
         alert("Неверно введены данные!");
         document.getElementById("userMonth").value = "";
         document.getElementById("userYear").value = "";
-
     } else {
         removeElements(document.querySelectorAll(`.month-table`));
         document.getElementById("monthCalendar").innerHTML += createMonthTable();
