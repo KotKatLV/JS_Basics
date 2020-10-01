@@ -5,3 +5,7 @@
 ## [Homework 4 task](https://github.com/KotKatLV/JS_Basics/blob/HW_4/Task/JS_HW_4.pdf)
 ## [Homework 5 task](https://github.com/KotKatLV/JS_Basics/blob/HW_5/Task/JS_HW_5.pdf)
 ## [Homework 6 task](https://github.com/KotKatLV/JS_Basics/blob/HW_6/Task/JS_HW_6.pdf)
+## [Homework 7 task](https://github.com/KotKatLV/JS_Basics/blob/HW_7/Task/JS_HW_7.pdf)
+## [Homework 8 task](https://github.com/KotKatLV/JS_Basics/blob/HW_8/Task/JS_HW_8.pdf)
+## [Homework 9 task](https://github.com/KotKatLV/JS_Basics/blob/HW_9/Task/JS_HW_9.pdf)
+## [Homework 10 task](https://github.com/KotKatLV/JS_Basics/blob/HW_10/Task/JS_HW_10.pdf)
