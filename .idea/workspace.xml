@@ -11,25 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5ee57e-49bd-4062-beed-bbcfa2d8b615" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/Img/Nav/next.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Nav/play.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Nav/prev.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Nav/stop.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Nav/to_end.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Nav/to_tart.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Screen/exit_fullscreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Screen/to_fullscreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Wood/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Wood/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Wood/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Wood/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Img/Wood/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task/JS_HW_17.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/35.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task/JS_HW_16.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601537027965</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="commit">
+      <created>1601537231874</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1601537231874</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,10 +259,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601506082879" />
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1601537029324">
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1601537233950">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601537029324" />
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1601537233950" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507956824" />
     <state x="667" y="119" width="585" height="801" key="find.popup" timestamp="1601505988970">
       <screen x="0" y="0" width="1920" height="1040" />
