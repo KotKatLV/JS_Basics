@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Kapatkov_JS_HW_13</title>
+</head>
+
+<body>
+
+    <p>Создать html-страницу с трекбаром. Предоставить пользователю возможность изменять положение синего указателя.</p>
+
+    <div class="slidecontainer">
+        <label for="myRange"></label><input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+
+    <hr>
+
+    <p>Создать html-страницу с галереей.</p>
+
+    <div class="big-container">
+        <div id="container" class="conatiner">
+            <div class="back-button">
+                <img id="leftButton" class="back" src="Img/back.png" alt="назад" onclick="back()">
+            </div>
+
+            <div class="container-main-pic">
+                <img id="main-pic" src="Img/css.png" alt="CSS3">
+            </div>
+
+            <div class="next-button">
+                <img id="rightButton" class="next" src="Img/next.png" alt="вперед" onclick="next()">
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <p>
+        Создать html-страницу с блоками информации, которые открываются по щелчку на заголовок. В один момент времени может быть развернут только один блок информации.
+    </p>
+
+    <div class="main-container">
+        <div id="first-text-block">
+            <p class="block-text-p" onclick="headerClick(this)">Заголовок 1</p>
+        </div>
+
+        <div id="second-text-block">
+            <p class="block-text-p" onclick="headerClick(this)">Заголовок 2</p>
+        </div>
+
+        <div id="third-text-block">
+            <p class="block-text-p" onclick="headerClick(this)">Заголовок 3</p>
+        </div>
+
+        <div id="fourth-text-block">
+            <p class="block-text-p" onclick="headerClick(this)">Заголовок 4</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <p>Создать html-страницу с новостями</p>
+
+    <div class="news-conatiner" onscroll="LoadNews(this)">
+        <div>
+            <p><b>Заголовок новости 1</b></p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
+            </p>
+        </div>
+
+        <div>
+            <p><b>Заголовок новости 2</b></p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
+            </p>
+        </div>
+
+        <div>
+            <p><b>Заголовок новости 3</b></p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <p>Создать html-страницу, на которой пользователь может ввести номер месяца, год, и получить календарь на указанный месяц.</p>
+
+    <div id="monthCalendar">
+        <p>Месяц:
+            <label for="userMonth"></label><input id="userMonth" type="number"> Год:
+            <label for="userYear"></label><input id="userYear" type="number">
+            <input type="submit" value="Сгенерировать" onclick="createCalendar()">
+        </p>
+    </div>
+
+    <script src="JS/app.js"></script>
+</body>
+
+</html>

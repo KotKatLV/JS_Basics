@@ -1,45 +1,66 @@
-.ul-ref {
-    width: 300px;
-    background-color: peachpuff;
-    opacity: 0.65;
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #d3d3d3;
+    outline: none;
+    height: 10px;
 }
 
-.tree span:hover {
-    font-weight: bold;
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: blue;
+    cursor: pointer;
 }
 
-.books-list {
-    background-color: aquamarine;
+.big-container {
+    width: 500px;
+    background-color: #FBF2E9;
 }
 
-.light-hr {
-    background-color: #ff0000;
-    color: #ff0000;
-    height: 1px;
+.conatiner div {
+    display: inline-block;
+    margin: 15px;
+    padding: 15px;
 }
 
-.text-area {
-    width: 100%;
+.container-main-pic img {
+    width: 250px;
+    height: 250px;
+    position: relative;
+}
+
+.next,
+.back {
+    position: relative;
+    bottom: 105px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.back {
     visibility: hidden;
 }
 
-TABLE {
-    width: 300px;
-    border-collapse: collapse;
-}
-
-TD,
-TH {
-    padding: 3px;
-    border: 1px solid black;
-}
-
-TH {
-    background: #b0e0e6;
-}
-
-.books-list,
-.table-headers,
-.tree span {
+.block-text-p {
+    background-color: #528CBA;
+    outline: 1px black solid;
+    margin: 0;
     cursor: pointer;
+    color: white;
+}
+
+.text-p {
+    background-color: #B7DCEB;
+    margin: 0;
+    padding: 0;
+    outline: 0.5px black solid;
+}
+
+.news-conatiner {
+    width: 50%;
+    height: 250px;
+    overflow-y: scroll;
+    background-color: #FBF2E9;
 }

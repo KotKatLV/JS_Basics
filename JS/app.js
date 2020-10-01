@@ -1,130 +1,142 @@
-"use strict";
+"use strict"
 
-// Задание 1
+//Задание 1
 
-// Создать html-страницу со списком ссылок. Ссылки на внешние источники (которые начинаются с http://) необходимо подчеркнуть пунктиром. Искать такие ссылки в списке и устанавливать им дополнительные стили необходимо с помощью JS.
-
-let ref = Array.from(document.querySelectorAll('#ul-references>li>a'));
-ref.forEach(a => {
-    if (a.innerHTML.search(/[https:]\/\//) !== -1) {
-        a.style.borderBottom = "1px dashed #000080";
-    }
-});
+// Создать html-страницу с трекбаром. Предоставить пользователю возможность изменять положение синего указателя.
+// P.s. Сделано с помощью HTML5 + CSS3.
 
 // Задание 2
 
-// Создать html-страницу с деревом вложенных директорий.При клике на элемент списка, он должен сворачиваться или
-// разворачиваться.При наведении на элемент, шрифт должен становится жирным(с помощью CSS).
+// Создать html-страницу с галереей.
 
-for (let li of tree.querySelectorAll('li')) {
-    let span = document.createElement('span');
-    li.prepend(span);
-    span.append(span.nextSibling);
+let imgSrcArr = ["Img/css.png", "Img/html.png", "Img/js.png", ];
+let imgAltArr = ["CSS3", "HTML5", "JS"];
+let rightButton = document.getElementById("rightButton");
+let leftButton = document.getElementById("leftButton");
+let curImg = document.getElementById("main-pic");
+let currentImgIndex = 0;
+
+function back() {
+    if (currentImgIndex > 0) {
+        rightButton.style.visibility = "visible";
+        curImg.setAttribute("src", imgSrcArr[--currentImgIndex]);
+        curImg.setAttribute("alt", imgAltArr[currentImgIndex]);
+    }
+
+    if (currentImgIndex <= 0) {
+        leftButton.style.visibility = "hidden";
+    }
 }
 
-tree.onclick = function(event) {
-    if (event.target.tagName !== 'SPAN') {
-        return;
+function next() {
+    if (currentImgIndex < imgSrcArr.length - 1) {
+        leftButton.style.visibility = "visible";
+        curImg.setAttribute("src", imgSrcArr[++currentImgIndex]);
+        curImg.setAttribute("alt", imgAltArr[currentImgIndex]);
     }
-    let childrenContainer = event.target.parentNode.querySelector('ul');
-    if (!childrenContainer) return;
-    childrenContainer.hidden = !childrenContainer.hidden;
+
+    if (currentImgIndex >= imgSrcArr.length - 1) {
+        rightButton.style.visibility = "hidden";
+    }
 }
 
 // Задание 3
 
-// Создать html-страницу со списком книг. При щелчке на элемент, цвет текста должен меняться на оранжевый. При повторном щелчке на другую книгу, предыдущей необходимо возвращать прежний цвет.Если при клике мышкой была зажата клавиша Ctrl, то элемент добавляется / удаляется из выделенных.Если при клике мышкой была зажата клавиша Shift, то к выделению добавляются все элементы в промежутке от предыдущего кликнутого до текущего.
+// Создать html-страницу с блоками информации, которые от-крываются по щелчку на заголовок. В один момент времени может быть развернут только один блок информации.
 
-let arrOfLiElems = Array.from(document.querySelectorAll('#books-list>li'));
-let changeColor = "orange";
+let headTextMap = new Map();
+headTextMap.set("Заголовок 1", "Информация заголовка 1");
+headTextMap.set("Заголовок 2", "Информация заголовка 2");
+headTextMap.set("Заголовок 3", "Информация заголовка 3");
+headTextMap.set("Заголовок 4", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, voluptatum totam eveniet voluptatem delectus eum recusandae quia odit distinctio unde, maxime nobis placeat sint id debitis officiis dolorem deserunt praesentium.Iusto assumenda consectetur omnis, eveniet rerum mollitia excepturi veritatis fugiat, asperiores illum sint maiores commodi! Qui, enim ipsum. Mollitia dignissimos eveniet dicta quis velit veritatis commodi, alias et atque nihil?Totam est ad neque omnis maiores vero voluptas earum quidem blanditiis quae? Distinctio saepe aperiam pariatur, nulla fugit id aspernatur neque expedita. Voluptatem harum rerum nesciunt fugiat accusamus aliquid ut!Non voluptatibus ipsam et! Saepe, commodi repellendus nisi dolorem modi officiis enim nemo consectetur fugit magni blanditiis quidem consequatur similique reprehenderit eum dolor facilis reiciendis maiores optio sequi voluptas rem.Qui illo unde quos rerum sint nulla maiores repellat ut omnis accusantium placeat modi corrupti non, impedit velit quasi autem laudantium rem veniam quibusdam, in assumenda? Nihil quod eligendi iste.Exercitationem dolorum nihil magnam at voluptate soluta sunt fuga, voluptates aliquid similique ratione, odit doloribus eos voluptatum quam error consequuntur delectus nulla deserunt? Quia veritatis inventore earum, rerum illum impedit.Recusandae modi sit obcaecati eaque quam est iste, repellendus veritatis maiores molestiae dolorum veniam aliquid magni officiis natus? Odit dolorem sed quasi. Eaque dolores aliquam rem eius esse fugiat quae?Temporibus commodi voluptate ratione a quisquam, quas dolorem labore reprehenderit odit voluptates voluptatum quaerat ducimus officiis, nobis repellat eos ad cumque nihil ipsam. Quisquam nostrum nam voluptatibus optio. Itaque, sint?Quae expedita velit rerum nam, cumque, soluta odit autem cum eos veniam nulla totam! Magni, rem veniam praesentium, eum molestiae quasi qui ducimus iure, nulla natus quae. Non, odio assumenda.Id earum exercitationem placeat eveniet nam nobis nisi mollitia. Ex molestias debitis commodi praesentium tempore, cumque voluptates officiis tenetur veritatis minima. Beatae quibusdam nemo sit in accusamus aliquid inventore quis.");
 
-function clearBackColorInOL() {
-    arrOfLiElems.forEach(e => e.style.backgroundColor = "unset");
-}
+const styleClass = "text-p";
+const removeElements = (elms) => elms.forEach(e => e.remove());
 
-function findLastClickedElemIndex() {
-    for (let i = arrOfLiElems.length - 1; i >= 0; i--) {
-        if (arrOfLiElems[i].style.backgroundColor === changeColor)
-            return i;
-    }
-}
-
-function fillBackColor(leftBorder, rightBorder) {
-
-    if (leftBorder === rightBorder) {
-        arrOfLiElems[leftBorder].style.backgroundColor = changeColor;
-    }
-
-    for (let i = leftBorder; i < rightBorder - 1; i++) {
-        arrOfLiElems[i].style.backgroundColor = changeColor;
-    }
-}
-
-document.querySelector(".books-list").addEventListener("click", () => {
-    let elem = document.querySelector(`.${event.target.className}`);
-
-    if (elem.style.backgroundColor === changeColor) {
-        elem.style.backgroundColor = "unset";
-
-    } else if (event.ctrlKey) {
-        elem.style.backgroundColor = changeColor;
-    } else if (event.shiftKey) {
-        if (elem.id < arrOfLiElems.findIndex(e => e.style.backgroundColor === changeColor)) {
-            let tmp = arrOfLiElems.findIndex(e => e.style.backgroundColor === changeColor);
-            fillBackColor(elem.id, ++tmp)
-        } else {
-            let lastClicked = findLastClickedElemIndex();
-            lastClicked > elem.id ? fillBackColor(elem.id, lastClicked) : fillBackColor(lastClicked, elem.id);
-        }
+function headerClick(element) {
+    if (element.parentElement.children.length > 1) {
+        removeElements(document.querySelectorAll(`.${styleClass}`));
     } else {
-        clearBackColorInOL();
-        elem.style.backgroundColor = changeColor;
+        removeElements(document.querySelectorAll(`.${styleClass}`));
+        let newPar = document.createElement("p");
+        newPar.setAttribute("class", styleClass);
+        newPar.innerHTML = headTextMap.get(element.textContent);
+        element.parentElement.append(newPar);
     }
-});
+}
 
-// Задание 4 
+// Задание 4
 
-// Создать html-страницу для отображения / редактирования текста.При открытии страницы текст отображается с помощью тега div.При нажатии Ctrl + E, вместо div появляется textarea с тем же текстом, который теперь можно редактировать.При нажатии Ctrl + S, вместо textarea появляет div с уже измененным текстом.Не забудьте выключить поведение по умолчанию для этих сочетаний клавиш.
+// Создать html-страницу с новостями.
+// Необходимо отлавливать, когда скролл доходит до конца страницы, и догружать еще новости в список. Новости для подгрузки хранить в заранее подготовленном массиве.
 
-document.addEventListener("keydown", function(e) {
-    if (e.ctrlKey && e.keyCode === 69) {
-        e.preventDefault();
-        let pText = document.getElementById("sourceText");
-        pText.style.visibility = "hidden";
-        let textArea = document.createElement("textarea");
-        textArea.setAttribute("id", "textArea");
-        textArea.style.height = "200px";
-        textArea.style.width = "100%";
-        textArea.value = pText.innerHTML;
-        document.getElementById("div-text").removeChild(pText);
-        document.getElementById("div-text").appendChild(textArea);
-    } else if (e.ctrlKey && e.keyCode === 83) {
-        e.preventDefault();
-        let textArea = document.getElementById("textArea");
-        let pText = document.createElement("p");
-        pText.setAttribute("id", "sourceText");
-        pText.innerHTML = document.getElementById("textArea").value;
-        document.getElementById("div-text").appendChild(pText);
-        document.getElementById("div-text").removeChild(textArea);
+let newsData = new Map();
+newsData.set("Заголовок новости 4", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
+newsData.set("Заголовок новости 5", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
+newsData.set("Заголовок новости 6", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
+let keysIter = newsData.keys();
+let valuesIter = newsData.values();
+
+const isScrollbarAtBottom = (element) => element.offsetHeight + element.scrollTop >= element.scrollHeight;
+
+function LoadNews(element) {
+    if (isScrollbarAtBottom(element)) {
+        let newDiv = document.createElement("div");
+        let newPHeader = document.createElement("p");
+        let newPText = document.createElement("p");
+
+        newPHeader.textContent = keysIter.next().value;
+        newPHeader.style.fontWeight = "bold";
+        newPText.textContent = valuesIter.next().value;
+
+        newDiv.appendChild(newPHeader);
+        newDiv.appendChild(newPText);
+        element.appendChild(newDiv);
     }
-})
+}
 
-//Задание 5
+// Задание 5
 
-// Создать html-страницу с большой таблицей.
-// При клике по заголовку колонки, необходимо отсортировать данные по этой колонке.Например: на скриншоте люди отсортированы по возрасту. Учтите, что числовые значения должны сортироваться как числа, а не как строки.
+// Создать html-страницу, на которой пользователь может ввести номер месяца, год, и получить календарь на указанный месяц.
 
-function headerClick(event) {
-    let arr = [];
-    let table = document.getElementById("table");
-
-    for (let i = 1; i < table.rows.length; i++) {
-        arr.push(table.rows[i].cells[event.cellIndex].innerHTML);
+function createMonthTable() {
+    let str = `<table class="month-table"> <tr> <th>Пн</th> <th>Вт</th> <th>Ср</th> <th>Чт</th> <th>Пт</th> <th>Сб</th> <th>Вск</th> `;
+    for (let i = 0; i < 5; i++) {
+        str += `<tr>`
+        for (let j = 0; j < 7; j++) {
+            str += `<td></td>`
+        }
+        str += `</tr>`
     }
+    str += `</table>`
+    return str;
+}
 
-    arr.sort((x, y) => x < y ? -1 : 1)
+function fillInTable(table, countOfDays, firstDay) {
+    for (let i = 1, d = 1; i < 6; i++) {
+        for (let j = firstDay; j < 7; j++) {
+            if (d === countOfDays + 1) {
+                return;
+            }
+            table.rows[i].cells[j].innerHTML = d++;
+        }
+        firstDay = 0;
+    }
+}
 
-    for (let i = 1, j = 0; i < table.rows.length; i++, j++) {
-        table.rows[i].cells[event.cellIndex].innerHTML = arr[j];
+function createCalendar() {
+    let date = new Date();
+    let userMonth = document.getElementById("userMonth").value;
+    let userYear = document.getElementById("userYear").value;
+
+    if (userMonth < 1 || userMonth > 12 || userYear > date.getFullYear() || userYear < 1970) {
+        alert("Неверно введены данные!");
+        document.getElementById("userMonth").value = "";
+        document.getElementById("userYear").value = "";
+
+    } else {
+        removeElements(document.querySelectorAll(`.month-table`));
+        document.getElementById("monthCalendar").innerHTML += createMonthTable();
+        fillInTable(document.getElementsByClassName("month-table")[0], new Date(userYear, --userMonth + 1, 0).getDate(), new Date(userYear, userMonth, 1).getDay() - 1);
     }
 }
