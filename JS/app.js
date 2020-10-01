@@ -1,113 +1,229 @@
-"use strict";
+"use strict"
 
-// 1.	Написать функцию, которая принимает строку и выводит статистику о ней: количество букв, количество цифр и количество других знаков.
-function getInfoAboutUserString() {
-    let userString = document.getElementById("userString_1").value;
-    let countOfChars = 0,
-        countOfDigits = 0,
-        countOfOtherSymb = 0;
-    userString.split("").forEach(s => {
-        if (!isNaN(s) && s !== " ") ++countOfDigits;
-        else if (s.match(/[а-яА-я]/iu) != null) ++countOfChars;
-        else if (s !== " ") ++countOfOtherSymb;
-    })
+// Задание 1
 
-    document.getElementById("countOfChars").value = countOfChars;
-    document.getElementById("countOfDigits").value = countOfDigits;
-    document.getElementById("countOfOtherSymbols").value = countOfOtherSymb;
-}
+// Реализовать класс, описывающий окружность. В классе должны быть следующие компоненты:
+class Circle {
 
-// 2.	Написать функцию, которая принимает двузначное число и возвращает его в текстовом виде.Например: 35–тридцать пять, 89–восемьдесят девять, 12–двенадцать.
-function getStringViewOfUserValue() {
-    let userValue = document.getElementById("userValue_1").value;
-
-    if (userValue.split("").length !== 2) {
-        alert("Неверное число!");
-        return;
+    //поле, хранящее радиус окружности
+    constructor(radius) {
+        this.radius = radius;
     }
 
-    let valuesFrom_10_To_19 = new Map();
-    valuesFrom_10_To_19.set(10, "Десять").set(11, "Одиннадцать").set(12, "Двенадцать").set(13, "Тринадцать").set(14, "Четырнадцать").set(15, "Пятнадцать").set(16, "Шестнадцать").set(17, "Семнадцать").set(18, "Восемнадцать").set(19, "Девятнацдцать");
+    // get-свойство, возвращающее радиус окружности
+    get getRadius() {
+        return this.radius;
+    }
 
-    if (valuesFrom_10_To_19.has(+userValue)) {
-        document.getElementById("stringViewOfUserValue").value = valuesFrom_10_To_19.get(+userValue);
-    } else {
-        let firstDigitMap = new Map();
-        let secondDigitMap = new Map();
-        firstDigitMap.set(0, "").set(1, "один").set(2, "два").set(3, "три").set(4, "четыре").set(5, "пять").set(6, "шесть").set(7, "семь").set(8, "восемь").set(9, "девять");
-        secondDigitMap.set(2, "двадцать").set(3, "тридцать").set(4, "сорок").set(5, "пятьдесят").set(6, "шестьдесят").set(7, "семьдесят").set(8, "восемьдесят").set(9, "девяносто");
-        document.getElementById("stringViewOfUserValue").value = secondDigitMap.get(+userValue[0]) + " " + firstDigitMap.get(+userValue[1]);
+    // set-свойство, устанавливающее радиус окружности
+    set setRadius(radius) {
+        this.radius = radius;
+    }
+
+    // get-свойство, возвращающее диаметр окружности
+    get getDiameter() {
+        return 2 * this.getRadius;
+    }
+
+    // метод, вычисляющий площадь окружности
+    calcAreaCircle() {
+        return Math.PI * this.getRadius * this.getRadius;
+    }
+
+    // метод, вычисляющий длину окружности
+    calcCircumference() {
+        return 2 * Math.PI * this.getRadius * this.getRadius;
     }
 }
 
-// 3.	Написать функцию, которая заменяет в полученной строке большие буквы на маленькие, маленькие – на большие, а цифры – на знак нижнего подчеркивания.
-function changeSymbols() {
-    let str = document.getElementById("userString_2").value;
-    str = str.replace(/\d/g, "_").split("");
-    for (let i = 0; i < str.length; i++) {
-        str[i] === str[i].toUpperCase() ? str[i] = str[i].replace(str[i], str[i].toLowerCase()) : str[i] = str[i].replace(str[i], str[i].toUpperCase());
+// Продемонстрировать работу свойств и методов
+let circle1 = new Circle(12);
+console.log(`Радиус окружности: ${circle1.getRadius}, диаметр: ${circle1.getDiameter}, площадь: ${(circle1.calcAreaCircle()).toFixed(2)}, длина: ${(circle1.calcCircumference()).toFixed(2)}`);
+
+// Задание 2
+
+// Реализовать класс, описывающий html элемент. Класс HtmlElement должен содержать внутри себя:
+
+class HtmlElement {
+
+    // название тега, самозакрывающийся тег или нет, текстовое содержимое, массив атрибутов, массив стилей, массив вложенных таких же тегов
+    constructor(tagName, isSelfClosing) {
+        this.tagName = String(tagName);
+        this.isSelfClosing = isSelfClosing;
+        this.innerText = "";
+        this.attributes = new Map();
+        this.styles = new Map();
+        this.htmlString = "";
     }
-    document.getElementById("afterChangedSymb").value = str.join("");
-}
 
-// 4.	Написать функцию, которая преобразует названия css-стилей с дефисом в название в СamelСase стиле: font-size в fontSize, background-color в backgroundColor, text- align в textAlign.
-function transformCSSStyle() {
-    let str = document.getElementById("userString_3").value.split("-");
-    document.getElementById("afterTransforming").value = str[0] + str[1].charAt(0).toUpperCase() + str[1].substring(1, str[1].length);
-}
+    // метод для установки атрибута
+    setAttribute(attributeName, attributeValue) {
+        this.attributes.set(attributeName, attributeValue);
+    }
 
-// 5.	Написать функцию, которая принимает словосочетание и превращает его в аббревиатуру. Например: cascading  style  sheets в CSS, объектно-ориентированное программирование в ООП.
-function createAbbreviationFromString() {
-    let result = "";
-    document.getElementById("userString_4").value.split(/-|\s/).forEach(s => result += s.charAt(0).toUpperCase());
-    document.getElementById("abbreviation").value = result;
-}
+    // метод для установки стиля
+    setStyle(styleName, styleValue) {
+        this.styles.set(styleName, styleValue);
+    }
 
-// 6.	Написать функцию, которая принимает любое количество строк, объединяет их в одну длинную строку и возвращает ее.
-function unionUserStrings() {
-    document.getElementById("userStringsUnion").value = document.getElementById("userString_5").value.replace(/\s/g, "");
-}
+    // метод для добавления вложенного элемента в конец текущего элемента;
+    addElementToTheEnd(element) {
+        this.innerText += " " + element.getHtml();
+    }
 
-// 7.	Написать функцию – калькулятор. Функция принимает строку с примером, определяет, какое действие необходимо выполнить (+ - * /), переводит операнды в числа, решает пример и возвращает результат.
-function getOperationResult() {
-    let tmp = document.getElementById("dropdownList");
-    let leftOperand = +document.getElementById("leftOperand").value;
-    let rightOperand = +document.getElementById("rightOperand").value;
-    document.getElementById("operationResult").value = eval(`${leftOperand} ${tmp.options[tmp.selectedIndex].text} ${rightOperand}`);
-}
+    //метод для добавления вложенного элемента в начало текущего элемента
+    addElementToTheBeginning(element) {
+        this.innerText = element.getHtml() + " " + this.getHtml();
+    }
 
-// 8.   Написать функцию, которая получает url и выводит под-робную информацию о нем. Например: url “https://itstep.org/ua/about”, информация “протокол: https, домен: itstep.org, путь: /ua/about”.
-function parseURL() {
-    let url = new URL(document.getElementById("userString_6").value);
-    document.getElementById("parsedURL").value = `Протокол ${url.protocol}, домен: ${url.host}, путь: ${url.pathname}`;
-}
+    getHtml() {
 
-// 9.	Написать функцию, которая принимает строку и разделитель(одиночный символ) и возвращает массив подстрок, разбитых с помощью указанного разделителя. Например: строка “10 / 08 / 2020”, разделитель “/”, результат: “10”, “08”, “2020”. Выполняя задание, не используйте функцию split().
-function separateUserString() {
-    let str = document.getElementById("userString_7").value;
-    let sep = document.getElementById("separator").value;
-    let result = [];
-    for (let i = 0, tmp = 0; i < str.length; i++) {
-        if (str[i] === sep) {
-            result.push(str.slice(tmp, i));
-            tmp = ++i;
+        if (this.htmlString.length > 0)
+            return this.htmlString;
+
+        let style = "";
+        let attribute = "";
+
+        this.styles.forEach((value, key) => style += key + value);
+        this.attributes.forEach((value, key) => attribute += key + value);
+
+        if (this.styles.size > 0) {
+            this.isSelfClosing ? this.htmlString = `<${this.tagName} style="${style}" ${attribute}>` : this.htmlString = `<${this.tagName} style="${style}" ${attribute}>${this.innerText}</${this.tagName}>`;
+        } else {
+            this.isSelfClosing && this.styles.size > 0 ? this.htmlString = `<${this.tagName} ${attribute}>` : this.htmlString = `<${this.tagName} ${attribute}>${this.innerText}</${this.tagName}>`;
         }
 
-        if (i === str.length - 1 && str[--tmp] === sep) {
-            result.push(str.slice(++tmp, str.length));
-        }
+        return this.htmlString;
     }
-    document.getElementById("afterSeparation").value = result;
 }
 
-// 10.	Написать функцию вывода текста по заданному шаблону. Функция принимает первым параметром шаблон, в тексте которого может использоваться %, после символа % ука-зывается индекс входного параметра. При выводе вместо %индекс необходимо вывести значение соответствующего входного параметра. Например: print(“Today is % 1 % 2. % 3. % 4”, “Monday”, 10, 8, 2020) должна вывести “Today is Monday 10.8.2020”.
-function makeStringFromTemplate() {
-    let template = document.getElementById("template").value;
-    let params = document.getElementById("params").value.split(",");
+// Раскомментировать для проверки результата 2 задания
+{
+    // let wrapper = new HtmlElement("div", false);
+    // wrapper.setAttribute(`id = `, `"wrapper"`);
+    // wrapper.setStyle("display: ", "flex;");
 
-    for (let i = 0, j = 1; i < params.length; i++) {
-        template = template.replace(`%${j++}`, params[i].trim());
+    // let a_1 = new HtmlElement("a", false);
+    // a_1.setAttribute("href = ", `"https://www.lipsum.com/" `);
+    // a_1.setAttribute("target = ", `"_blank"`);
+    // a_1.innerText = "More...";
+
+    // let par_1 = new HtmlElement("p", false);
+    // par_1.setStyle("text-align: ", "justify;");
+    // par_1.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.Consequatur accusamus sequi laudantium eaque soluta in nisi, enim natus dolores illum quis dicta consectetur molestiae repellendus perspiciatis eveniet, debitis eum.Amet.Soluta commodi esse istemagni facilis possimus ad dicta reprehenderit laudantium ? Veritatis quis, quidem architecto delectus tempora sapiente ? Accusantium et perspiciatis fugit libero sed hic veniam commodi pariatur totam porro.Laborum iusto labore quis inventore quo! Molestiaefacilis perspiciatis illum sequi id iste quisquam maiores nam laborum nulla! Quidem pariatur accusantium tempora enim, earum aliquid obcaecati cupiditate modi nostrum ad.Quam doloremque magni soluta ? Eveniet, temporibus ipsum ex vitae veritatis mollitia.";
+    // par_1.addElementToTheEnd(a_1);
+
+    // let img = new HtmlElement("img", true);
+    // img.setStyle("width: ", "100%");
+    // img.setAttribute("src = ", `"Images/004_lorem.jpg "`);
+    // img.setAttribute("alt = ", `"Lorem Ipsum"`);
+
+    // let h3 = new HtmlElement("h3", false);
+    // h3.innerText = "What is Lorem Ipsum?"
+
+    // let div2 = new HtmlElement("div", false);
+    // div2.setStyle("width: ", "300px;");
+    // div2.setStyle("margin: ", "10px;");
+
+    // div2.addElementToTheEnd(h3);
+    // div2.addElementToTheEnd(img);
+    // div2.addElementToTheEnd(par_1);
+    // wrapper.addElementToTheEnd(div2);
+    // wrapper.addElementToTheEnd(div2);
+
+    // document.write(wrapper.getHtml());
+}
+
+// Задание 3
+
+// Реализовать класс, который описывает css класс. Класс CssClass должен содержать внутри себя
+class CSSClass {
+    constructor(className) {
+        // название css класса;
+        this.className = className;
+
+        // массив стилей
+        this.styles = new Map();
     }
 
-    document.getElementById("templateString").value = template;
+    // метод для установки стиля
+    setStyle(styleName, styleValue) {
+        this.styles.set(styleName, styleValue);
+    }
+
+    // метод для удаления стиля
+    delStyle(styleName) {
+        this.styles.delete(styleName);
+    }
+
+    // метод getCss(), который возвращает css код в виде стро-ки.
+    getCSS() {
+        let style = "";
+        this.styles.forEach((value, key) => style += key + value + "\n" + " ");
+        return `.${this.className} {\n ${style.trim()} \n}`;
+    }
 }
+
+// Задание 4
+
+// Реализовать класс, описывающий блок html документ. Класс HtmlBlock должен содержать внутри себя:
+class HTMLBlock {
+    constructor(css, html) {
+        this.CSS = css;
+        this.HTML = html;
+    }
+
+    getCode() {
+        let styles = "<style>";
+        this.CSS.forEach(styleClass => styles += styleClass.getCSS() + "\n");
+        styles += "</style>";
+        return styles + this.HTML.getHtml();
+    }
+}
+
+let wrapClass = new CSSClass("wrap");
+wrapClass.setStyle("display:", " flex;");
+
+let blockClass = new CSSClass("block");
+blockClass.setStyle("width:", " 300px;");
+blockClass.setStyle("margin:", " 10px;");
+
+let imgClass = new CSSClass("img");
+imgClass.setStyle("width:", " 100%;");
+
+let textClass = new CSSClass("text");
+textClass.setStyle("text-align:", " justify;");
+
+let wrapper = new HtmlElement("div", false);
+wrapper.setAttribute(`id = `, `"wrapper"`);
+wrapper.setAttribute(`class = `, `"wrap"`)
+
+let a_1 = new HtmlElement("a", false);
+a_1.setAttribute(`href = `, `"https://www.lipsum.com/" `);
+a_1.setAttribute(`target = `, `"_blank"`);
+a_1.innerText = "More...";
+
+let par_1 = new HtmlElement("p", false);
+par_1.setAttribute(`class = `, `"text"`);
+par_1.innerText = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.Consequatur accusamus sequi laudantium eaque soluta in nisi, enim natus dolores illum quis dicta consectetur molestiae repellendus perspiciatis eveniet, debitis eum.Amet.Soluta commodi esse istemagni facilis possimus ad dicta reprehenderit laudantium ? Veritatis quis, quidem architecto delectus tempora sapiente ? Accusantium et perspiciatis fugit libero sed hic veniam commodi pariatur totam porro.Laborum iusto labore quis inventore quo! Molestiaefacilis perspiciatis illum sequi id iste quisquam maiores nam laborum nulla! Quidem pariatur accusantium tempora enim, earum aliquid obcaecati cupiditate modi nostrum ad.Quam doloremque magni soluta ? Eveniet, temporibus ipsum ex vitae veritatis mollitia.";
+par_1.addElementToTheEnd(a_1);
+
+let img = new HtmlElement("img", true);
+img.setAttribute(`class = `, `"img"`);
+img.setAttribute(`src = `, `"Images/004_lorem.jpg "`);
+img.setAttribute(`alt = `, `"Lorem Ipsum"`);
+
+let h3 = new HtmlElement("h3", false);
+h3.innerText = "What is Lorem Ipsum?"
+
+let div2 = new HtmlElement("div", false);
+div2.setAttribute(`class = `, `"block"`);
+
+div2.addElementToTheEnd(h3);
+div2.addElementToTheEnd(img);
+div2.addElementToTheEnd(par_1);
+wrapper.addElementToTheEnd(div2);
+wrapper.addElementToTheEnd(div2);
+
+let htmlBlock = new HTMLBlock([wrapClass, blockClass, imgClass, textClass], wrapper);
+document.write(htmlBlock.getCode());
