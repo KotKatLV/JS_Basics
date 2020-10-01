@@ -12,7 +12,7 @@
 .search-form {
     border: 1px solid #4CAF50;
     border-radius: 20px;
-    width: 60%;
+    width: 80%;
     height: 130px;
     overflow: hidden;
     margin: auto auto 25px;
@@ -46,6 +46,7 @@
 }
 
 #titleInput {
+    width: 75%;
     margin-left: 15px;
 }
 
@@ -53,131 +54,145 @@
     margin-left: 14px;
 }
 
-.films-main-wrapper {
+.load-img {
     text-align: center;
-    width: 95%;
-    padding: 5px;
 }
 
-.films-main-wrapper div {
+.film-search-results {
+    text-align: center;
+    width: 100%;
+}
+
+.film-search-results div {
+    border-radius: 10px;
     display: inline-block;
-    border-radius: 15px;
-    background-color: white;
+    width: 180px;
+    /* height: 400px; */
+    /* outline: 1px solid green; */
+    margin: 15px;
 }
 
-.poster-img-wrapper {
-    width: 190px;
-    height: 280px;
-    margin: 15px 31px 15px 15px;
+.button-container {
+    text-align: center;
 }
 
-.poster-img {
-    margin: 0;
-    width: 190px;
-    height: 280px;
-}
-
-.poster-img img {
-    height: 90%;
-    width: 90%;
-}
-
-.description {
-    float: right;
-    text-align: left;
-    margin-top: 55px;
+.button-container button {
+    width: 18%;
+    border-radius: 8px;
+    border: 0.1px solid purple;
+    outline: none;
+    cursor: pointer;
 }
 
 .film-wrapper {
-    text-align: left;
-    border-radius: 15px;
-    border: 1px solid #4CAF50;
-    margin: 10px;
+    /* height: 400px; */
+    padding: 3px;
+    border: 1px solid gray;
 }
 
 .film-wrapper div {
-    display: inline-block;
-    width: 165px;
+    /* height: 100%; */
+    /* width: 90%; */
+    display: block;
+    /* margin-bottom: 5px; */
+    margin: 5px auto auto;
 }
 
-.pagination {
+.title-wrapper {
+    height: 200px;
+    /* height: 70%; */
+}
+
+.title-wrapper img {
+    width: 150px;
+    height: 200px;
+}
+
+.description {
+    margin-top: 15px;
+    height: 130px;
+    /* width: 100%; */
+    /* margin: auto; */
+    overflow: hidden;
+    font-size: small;
+}
+
+.button-details {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    border: 0.1px solid chartreuse;
+}
+
+.description a {
+    color: black;
+    text-decoration: none;
+}
+
+.load-img-more {
     text-align: center;
-    margin: auto auto 15px;
 }
 
-.pagination button {
-    cursor: pointer;
-    width: 50px;
-    height: 35px;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-}
-
-.pagination button:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-a {
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    padding: 8px 16px;
-}
-
-a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.previous {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.next {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.details-button {
-    cursor: pointer;
-    width: 90%;
-}
-
-.leftArrowPict,
-.rightArrowPict {
-    cursor: pointer;
-    position: relative;
-    width: 5%;
-    bottom: 110px;
-}
-
-.film-description-wrapper {
-    margin: auto auto 15px;
-    border: 1px solid gray;
-    width: 650px;
-    padding: 5px;
-}
-
-.film-description-wrapper div {
-    display: inline-block;
-    height: 500px;
-}
-
-.film-description-img img {
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.film-description-img {
-    margin-right: 10px;
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    /* width: 650px;
+    height: 410px; */
+    border-radius: 0.5rem;
 }
 
-.full-film-description {
+.modal-content div {
+    display: inline-block;
+    height: 400px;
+}
+
+.close-button {
     float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.img-title img {
+    width: 280px;
+    height: 400px;
+    margin-right: 15px;
+}
+
+.img-title {
+    float: left;
 }
 
 .table {

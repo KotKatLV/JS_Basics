@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kapatkov_JS_HW_15</title>
+    <title>Kapatkov_JS_HW_16</title>
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 
@@ -14,7 +14,7 @@
             <p class="search-p">Search</p>
             <form class="search-form">
                 <p class="title-p">Title
-                    <label for="titleInput"></label><input type="text" name="" id="titleInput"></p>
+                    <label for="titleInput"></label><input type="text" id="titleInput"></p>
                 <p class="type-p">Type
                     <label for="typelist"></label><select name="type-list" id="typelist">
                         <option value="Movie">Movie</option>
@@ -23,17 +23,30 @@
                     </select>
                 </p>
 
-                <button class="submit-button" type="button" onclick="searchMovie()">Search</button>
+                <button class="submit-button" type="button" onclick="search()">Search</button>
             </form>
         </div>
 
         <div class="films-main-wrapper">
+            <div class="load-img">
+                <img src="Img/35.gif" alt="loading">
+            </div>
 
+            <div class="load-img-more">
+                <img src="Img/35.gif" alt="loading">
+            </div>
         </div>
 
-        <script src="JS/jQuery/jquery-3.5.1.js"></script>
-        <script src="JS/jQuery/app.js"></script>
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-button">X</span>
+                <img src="Img/35.gif" alt="loading">
+            </div>
+        </div>
     </div>
+
+    <script src="JS/jQuery/jquery-3.5.1.js"></script>
+    <script src="JS/app.js"></script>
 </body>
 
 </html>
