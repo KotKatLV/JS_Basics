@@ -46,15 +46,15 @@
 .block-text-p {
     background-color: #528CBA;
     outline: 1px black solid;
-    margin: 0;
+    margin: 0px;
     cursor: pointer;
     color: white;
 }
 
 .text-p {
     background-color: #B7DCEB;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     outline: 0.5px black solid;
 }
 
