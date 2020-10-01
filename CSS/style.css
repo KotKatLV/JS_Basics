@@ -1,66 +1,281 @@
-.slider {
-    -webkit-appearance: none;
-    appearance: none;
-    background: #d3d3d3;
-    outline: none;
-    height: 10px;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    background: blue;
-    cursor: pointer;
-}
-
-.big-container {
-    width: 500px;
+.forum-container {
+    vertical-align: middle;
+    width: 65%;
+    padding: 5px;
+    margin: auto;
     background-color: #FBF2E9;
+    overflow: hidden;
 }
 
-.conatiner div {
+.new-message {
+    text-align: center;
+    font-weight: bold;
+}
+
+.posts {
+    margin: 10px;
+    padding: 10px;
+}
+
+.user-login {
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.message {
+    margin-top: -5px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.user-message {
+    overflow: hidden;
+    word-wrap: break-word;
+    margin: 5px;
+}
+
+.login-name,
+.message-time {
+    margin: 5px;
+}
+
+.message-time {
+    float: right;
+}
+
+.login-name {
+    float: left;
+}
+
+.send-button {
+    width: 100%;
+}
+
+.input-user-name {
+    width: 91%;
+}
+
+.input-user-message {
+    position: absolute;
+}
+
+.message-from {
+    margin-bottom: 30px;
+}
+
+.post {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-user-message {
+    width: 55.5%;
+}
+
+.stylizedTextForm {
+    margin: auto;
+    background-color: #FBF2E9;
+    text-align: center;
+    width: 850px;
+}
+
+.books-shop-main-container {
+    width: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: #FBF2E9;
+    text-align: center;
+}
+
+.books-shop-main-container div {
     display: inline-block;
-    margin: 15px;
-    padding: 15px;
+    padding: 5px;
 }
 
-.container-main-pic img {
+.first-book-wrapper,
+.second-book-wrapper,
+.third-book-wrapper {
+    text-align: center;
+    width: 270px;
+    height: 420px;
+    overflow: hidden;
+    margin: 10px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.first-book-wrapper img,
+.second-book-wrapper img,
+.third-book-wrapper img {
     width: 250px;
     height: 250px;
-    position: relative;
 }
 
-.next,
-.back {
-    position: relative;
-    bottom: 105px;
-    height: 30px;
-    cursor: pointer;
+.book-img {
+    margin: 5px;
 }
 
-.back {
-    visibility: hidden;
+.product-description {
+    margin: 5px;
+    width: 250px;
+    height: 150px;
 }
 
-.block-text-p {
-    background-color: #528CBA;
-    outline: 1px black solid;
-    margin: 0;
-    cursor: pointer;
-    color: white;
-}
-
-.text-p {
-    background-color: #B7DCEB;
+.book-price {
+    text-align: right;
+    float: right;
     margin: 0;
     padding: 0;
-    outline: 0.5px black solid;
+    position: relative;
+    top: 35px;
 }
 
-.news-conatiner {
-    width: 50%;
-    height: 250px;
-    overflow-y: scroll;
+.button {
+    width: 230px;
+    text-align: center;
+}
+
+.select-button {
+    cursor: pointer;
+    width: 100%;
+}
+
+.book-name {
+    margin: 0;
+    padding: 0;
+}
+
+.full-product-descr {
+    width: 250px;
+    height: 100px;
+}
+
+.author {
+    float: left;
+}
+
+.order-wrapper {
+    width: 370px;
+    height: 420px;
+    overflow: hidden;
+    margin: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.order-wrapper div {
+    display: inline-block;
+}
+
+.inputs {
+    text-align: right;
+}
+
+.inputs input {
+    width: 229px;
+}
+
+.order-table {
+    margin: 20px;
+}
+
+.labels {
+    text-align: left;
+}
+
+.button-buy {
+    text-align: center;
+    width: 230px;
+}
+
+.selection-string {
+    text-align: center;
+    border-bottom: 1px solid gray;
+}
+
+.student-attendance-log-wrapper div {
+    text-align: center;
+    margin: auto;
     background-color: #FBF2E9;
+    padding: 4px;
+    width: 51%;
+}
+
+#dropdownListOfGropus,
+#dropdownListOfLessons {
+    margin: 8px;
+}
+
+.lesson-topic {
+    width: 78%;
+}
+
+.log-table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.log-table tr {
+    border-bottom: 1px solid red;
+}
+
+.save-log-button {
+    text-align: center;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.ticket-market-wrapper div {
+    text-align: center;
+    margin: auto;
+    background-color: #FBF2E9;
+    padding: 4px;
+    width: 81%;
+}
+
+#listOfDirections {
+    margin-right: 10px;
+}
+
+.search-direction-button {
+    cursor: pointer;
+    width: 20%;
+}
+
+.train-seats {
+    border-collapse: separate;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+}
+
+.train-seats table tr td {
+    width: 36px;
+    border: 1px solid gray;
+    margin: 0;
+}
+
+.train-seats table {
+    border: 0.5px solid gray;
+}
+
+.ordered-tickets-table {
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    border-collapse: collapse;
+    border: 0.5px solid gray;
+}
+
+.ordered-tickets-table td,
+th {
+    padding: 3px;
+    border: 1px solid black;
+}
+
+.ordered-tickets-table caption {
+    text-align: left;
 }

@@ -1,141 +1,529 @@
 "use strict"
 
-//Задание 1
+// Задание 1
 
-// Создать html-страницу с трекбаром. Предоставить пользователю возможность изменять положение синего указателя.
-// P.s. Сделано с помощью HTML5 + CSS3.
+// Создать html-страницу со списком сообщений на форуме и формой для добавления нового сообщения. После заполнения формы добавить сообщение к списку на экране.
 
-// Задание 2
+const getElemValue = (id) => document.getElementById(id).value;
+const createElem = (elemName) => document.createElement(elemName);
 
-// Создать html-страницу с галереей.
+function createNewPost() {
 
-let imgSrcArr = ["Img/css.png", "Img/html.png", "Img/js.png", ];
-let imgAltArr = ["CSS3", "HTML5", "JS"];
-let rightButton = document.getElementById("rightButton");
-let leftButton = document.getElementById("leftButton");
-let curImg = document.getElementById("main-pic");
-let currentImgIndex = 0;
+    let userName = getElemValue("inputUserName");
+    let userMess = getElemValue("txtArea");
 
-function back() {
-    if (currentImgIndex > 0) {
-        rightButton.style.visibility = "visible";
-        curImg.setAttribute("src", imgSrcArr[--currentImgIndex]);
-        curImg.setAttribute("alt", imgAltArr[currentImgIndex]);
-    }
+    if (userName.length < 1 || userMess.length < 1) {
+        alert("Ошибка при вводе данных!");
 
-    if (currentImgIndex <= 0) {
-        leftButton.style.visibility = "hidden";
+    } else {
+        let postDiv = createElem("div");
+        postDiv.setAttribute("class", "post");
+
+        let userLoginDiv = createElem("div");
+        userLoginDiv.setAttribute("class", "user-login");
+
+        let loginNameP = createElem("p");
+        loginNameP.setAttribute("class", "login-name");
+        loginNameP.innerHTML = userName;
+
+        let today = new Date();
+        let date = today.getDate() + '.' + ((today.getMonth() + 1) < 10 ? "0" + (today.getMonth() + 1) : (today.getMonth() + 1)) + '.' + today.getFullYear();
+        let time = today.getHours() + ":" + (today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes()) + ":" + (today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds()) + " ";
+        let messTimeP = createElem("p");
+        messTimeP.setAttribute("class", "message-time");
+        messTimeP.innerHTML = time + date;
+
+        let messageDiv = createElem("div");
+        messageDiv.setAttribute("class", "message");
+
+        let userMessageP = createElem("p");
+        userMessageP.setAttribute("class", "user-message");
+        userMessageP.innerHTML = userMess;
+
+        userLoginDiv.appendChild(loginNameP);
+        userLoginDiv.appendChild(messTimeP);
+        messageDiv.appendChild(userMessageP);
+        postDiv.appendChild(userLoginDiv);
+        postDiv.appendChild(messageDiv);
+        let forum = document.getElementById("posts");
+        forum.appendChild(postDiv);
+
+        document.getElementById("inputUserName").value = "";
+        document.getElementById("txtArea").value = "";
     }
 }
 
-function next() {
-    if (currentImgIndex < imgSrcArr.length - 1) {
-        leftButton.style.visibility = "visible";
-        curImg.setAttribute("src", imgSrcArr[++currentImgIndex]);
-        curImg.setAttribute("alt", imgAltArr[currentImgIndex]);
-    }
+// Задание 2
 
-    if (currentImgIndex >= imgSrcArr.length - 1) {
-        rightButton.style.visibility = "hidden";
+//Создать html-страницу для прохождения теста. Вопросы теста имеют два варианта ответа(только 1 правильный). После прохождения теста, вывести количество правильных ответов.
+let userPoints = 0;
+let isFirstAnswered = false;
+let isSecondAnswered = false;
+
+function checkFirstAnswer() {
+    if (document.getElementById("FiveRadio").checked && !isFirstAnswered) {
+        ++userPoints;
+        isFirstAnswered = true;
     }
+}
+
+function checkSecondAnswer() {
+    if (document.getElementById("SixRadio").checked && !isSecondAnswered) {
+        ++userPoints;
+        isSecondAnswered = true;
+    }
+}
+
+function getTestResult() {
+    if (document.querySelector(".testRes") != null)
+        document.querySelector(".testRes").remove();
+
+    let newP = document.createElement("p");
+    newP.setAttribute("class", "testRes");
+    newP.innerHTML = `Результат: ${userPoints} пр. отв. из 2-х вопросов.`;
+    let quiz = document.getElementById("quiz");
+    quiz.appendChild(newP);
+    userPoints = 0;
+    isFirstAnswered = false;
+    isSecondAnswered = false;
 }
 
 // Задание 3
 
-// Создать html-страницу с блоками информации, которые от-крываются по щелчку на заголовок. В один момент времени может быть развернут только один блок информации.
+// Создать html-страницу с формой для ввода стилизованного текста. После заполнения формы, вывести текст на экран в соответствии с указанными стилями.
 
-let headTextMap = new Map();
-headTextMap.set("Заголовок 1", "Информация заголовка 1");
-headTextMap.set("Заголовок 2", "Информация заголовка 2");
-headTextMap.set("Заголовок 3", "Информация заголовка 3");
-headTextMap.set("Заголовок 4", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, voluptatum totam eveniet voluptatem delectus eum recusandae quia odit distinctio unde, maxime nobis placeat sint id debitis officiis dolorem deserunt praesentium.Iusto assumenda consectetur omnis, eveniet rerum mollitia excepturi veritatis fugiat, asperiores illum sint maiores commodi! Qui, enim ipsum. Mollitia dignissimos eveniet dicta quis velit veritatis commodi, alias et atque nihil?Totam est ad neque omnis maiores vero voluptas earum quidem blanditiis quae? Distinctio saepe aperiam pariatur, nulla fugit id aspernatur neque expedita. Voluptatem harum rerum nesciunt fugiat accusamus aliquid ut!Non voluptatibus ipsam et! Saepe, commodi repellendus nisi dolorem modi officiis enim nemo consectetur fugit magni blanditiis quidem consequatur similique reprehenderit eum dolor facilis reiciendis maiores optio sequi voluptas rem.Qui illo unde quos rerum sint nulla maiores repellat ut omnis accusantium placeat modi corrupti non, impedit velit quasi autem laudantium rem veniam quibusdam, in assumenda? Nihil quod eligendi iste.Exercitationem dolorum nihil magnam at voluptate soluta sunt fuga, voluptates aliquid similique ratione, odit doloribus eos voluptatum quam error consequuntur delectus nulla deserunt? Quia veritatis inventore earum, rerum illum impedit.Recusandae modi sit obcaecati eaque quam est iste, repellendus veritatis maiores molestiae dolorum veniam aliquid magni officiis natus? Odit dolorem sed quasi. Eaque dolores aliquam rem eius esse fugiat quae?Temporibus commodi voluptate ratione a quisquam, quas dolorem labore reprehenderit odit voluptates voluptatum quaerat ducimus officiis, nobis repellat eos ad cumque nihil ipsam. Quisquam nostrum nam voluptatibus optio. Itaque, sint?Quae expedita velit rerum nam, cumque, soluta odit autem cum eos veniam nulla totam! Magni, rem veniam praesentium, eum molestiae quasi qui ducimus iure, nulla natus quae. Non, odio assumenda.Id earum exercitationem placeat eveniet nam nobis nisi mollitia. Ex molestias debitis commodi praesentium tempore, cumque voluptates officiis tenetur veritatis minima. Beatae quibusdam nemo sit in accusamus aliquid inventore quis.");
-
-const styleClass = "text-p";
+const isChecked = (elemId) => document.getElementById(elemId).checked;
 const removeElements = (elms) => elms.forEach(e => e.remove());
 
-function headerClick(element) {
-    if (element.parentElement.children.length > 1) {
-        removeElements(document.querySelectorAll(`.${styleClass}`));
-    } else {
-        removeElements(document.querySelectorAll(`.${styleClass}`));
-        let newPar = document.createElement("p");
-        newPar.setAttribute("class", styleClass);
-        newPar.innerHTML = headTextMap.get(element.textContent);
-        element.parentElement.append(newPar);
+function createText(styles) {
+    removeElements(document.querySelectorAll(".created-text"));
+
+    let newDiv = document.createElement("div");
+    newDiv.setAttribute("class", "created-text");
+    newDiv.style.backgroundColor = "#FBF2E9"
+    newDiv.style.margin = "auto";
+    newDiv.style.width = "850px";
+    newDiv.style.textAlign = "center";
+
+    let resultP = document.createElement("p");
+    resultP.style.textAlign = "left";
+    resultP.textContent = "Результат:"
+
+    let textP = document.createElement("p");
+    textP.setAttribute("style", styles);
+    textP.innerHTML = document.getElementById("userText").value;
+    textP.style.border = "1px solid black";
+    textP.style.padding = "5px";
+
+    newDiv.appendChild(resultP);
+    newDiv.appendChild(textP);
+
+    let form = document.getElementById("stylizedTextContainer");
+    form.appendChild(newDiv);
+}
+
+function showText() {
+    let styles = [];
+    let stylesResult = "";
+    if (isChecked("boldText"))
+        styles.push("font-weight: bold;");
+    if (isChecked("underlineText"))
+        styles.push("text-decoration: underline;");
+    if (isChecked("italicsText"))
+        styles.push("font-style: italic;");
+
+    if (isChecked("leftAlign")) {
+        styles.push("text-align: left;");
+    } else if (isChecked("rightAlign")) {
+        styles.push("text-align: right;");
+    } else if (isChecked("justifyAlign")) {
+        styles.push("text-align: justify;");
     }
+
+    styles.forEach(s => stylesResult += s);
+    createText(stylesResult);
 }
 
 // Задание 4
 
-// Создать html-страницу с новостями.
-// Необходимо отлавливать, когда скролл доходит до конца страницы, и догружать еще новости в список. Новости для подгрузки хранить в заранее подготовленном массиве.
+// Создать html-страницу для магазина книг. Пользователь должен иметь возможность выбрать книгу, указать количество экземпляров, ввести свое имя, дату доставки, адрес доставки и комментарий. После заполнения формы необходимо вывести на экран: «Имя покупателя, спасибо за заказ.Такой - то товар будет доставлен в такую-то дату по такому-то адресу».
 
-let newsData = new Map();
-newsData.set("Заголовок новости 4", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
-newsData.set("Заголовок новости 5", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
-newsData.set("Заголовок новости 6", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?");
-let keysIter = newsData.keys();
-let valuesIter = newsData.values();
+// P.s. не делал проверок на null или 0 значения в вводимых полях
 
-const isScrollbarAtBottom = (element) => element.offsetHeight + element.scrollTop >= element.scrollHeight;
+let bookPrice = 0;
+let bookName = "";
 
-function LoadNews(element) {
-    if (isScrollbarAtBottom(element)) {
-        let newDiv = document.createElement("div");
-        let newPHeader = document.createElement("p");
-        let newPText = document.createElement("p");
+function getInfoAboutSell() {
+    removeElements(document.querySelectorAll(".sell-result"));
 
-        newPHeader.textContent = keysIter.next().value;
-        newPHeader.style.fontWeight = "bold";
-        newPText.textContent = valuesIter.next().value;
+    let resDiv = document.createElement("div");
+    resDiv.setAttribute("class", "sell-result");
+    resDiv.style.backgroundColor = "#FBF2E9";
 
-        newDiv.appendChild(newPHeader);
-        newDiv.appendChild(newPText);
-        element.appendChild(newDiv);
-    }
+    let newP = document.createElement("p");
+    newP.textContent = "Результат";
+    newP.style.textAlign = "left";
+
+    let textDiv = document.createElement("div");
+    textDiv.style.border = "1px solid black";
+
+    let textDivP1 = document.createElement("p");
+    textDivP1.textContent = `${document.getElementById("userNumber").value}, спасибо за заказ!`
+
+    let textDivP2 = document.createElement("p");
+    bookPrice *= +document.getElementById("countOfBook").value;
+    let date = document.getElementById("delyDate").value.split("-");
+
+    textDivP2.textContent = `Книга "${document.getElementById("bookName").value}" будет доставлена ${date[2]}.${date[1]}.${date[0]}. по адресу ${document.getElementById("delyAddress").value}. Стоимость заказа составила ${bookPrice.toFixed(2)}$.`
+
+    resDiv.appendChild(newP);
+    textDiv.appendChild(textDivP1);
+    textDiv.appendChild(textDivP2);
+    resDiv.appendChild(textDiv);
+
+    let tmp = document.getElementById("books-shop");
+    tmp.appendChild(resDiv);
+}
+
+function choosedProduct(book) {
+    let bookDescripElem = book.parentNode.nextSibling.parentElement.firstElementChild;
+    bookDescripElem.childNodes.forEach(c => {
+        if (c.className === "book-name") { bookName = c.innerHTML.trim(); }
+        if (c.className === "book-price") { bookPrice = +(c.innerText.substring(0, c.innerText.length - 1)).replace(",", "."); }
+    });
+    document.getElementById("bookName").value = bookName;
+    document.getElementById("countOfBook").value = 1;
 }
 
 // Задание 5
 
-// Создать html-страницу, на которой пользователь может ввести номер месяца, год, и получить календарь на указанный месяц.
+// Создать html-страницу с возможностью отмечать присутствующих на паре. Для начала пользователь выбирает группу и пару, дальше вводит тему занятия и отмечает присутствующих. Также добавить возможность посмотреть уже отмеченные пары. Хранить информацию в заранее подготовленных массивах.
 
-function createMonthTable() {
-    let str = `<table class="month-table"> <tr> <th>Пн</th> <th>Вт</th> <th>Ср</th> <th>Чт</th> <th>Пт</th> <th>Сб</th> <th>Вск</th> `;
-    for (let i = 0; i < 5; i++) {
-        str += `<tr>`
-        for (let j = 0; j < 7; j++) {
-            str += `<td></td>`
-        }
-        str += `</tr>`
-    }
-    str += `</table>`
-    return str;
+const groups = ["Группа 1", "Группа 2", "Группа 3"];
+const lessons = ["Занятие 1", "Занятие 2", "Занятие 3"];
+const students = [
+    { name: "Вася", groupName: "Группа 1" },
+    { name: "Петя", groupName: "Группа 1" },
+    { name: "Коля", groupName: "Группа 1" },
+    { name: "Игорь", groupName: "Группа 2" },
+    { name: "Сергей", groupName: "Группа 2" },
+    { name: "Саша", groupName: "Группа 2" },
+    { name: "Егор", groupName: "Группа 3" },
+    { name: "Дима", groupName: "Группа 3" },
+    { name: "Илья", groupName: "Группа 3" },
+]
+let markedLessons = [];
+let listOfGroups = null;
+let listOfLessons = null;
+
+function createTable() {
+    let newTable = createElem("table");
+    newTable.setAttribute("class", "log-table");
+
+    let firstTr = createElem("tr");
+    let studentTh = createElem("th");
+    studentTh.textContent = "Студент";
+    let attendanceTh = createElem("th");
+    attendanceTh.textContent = "Присутствие";
+
+    firstTr.appendChild(studentTh);
+    firstTr.appendChild(attendanceTh);
+    newTable.appendChild(firstTr);
+
+    let studentsOfSelectedGroup = students.filter(s => s.groupName === listOfGroups.options[listOfGroups.selectedIndex].text);
+    let studentTr = null;
+    let studentTd = null;
+    let attendanceTd = null;
+    let attendanceCb = null;
+    studentsOfSelectedGroup.forEach(s => {
+        studentTr = createElem("tr");
+        studentTd = createElem("td");
+        studentTd.textContent = s.name;
+
+        attendanceTd = createElem("td");
+        attendanceCb = createElem("input");
+        attendanceCb.setAttribute("type", "checkbox");
+
+        attendanceTd.appendChild(attendanceCb);
+        studentTr.appendChild(studentTd);
+        studentTr.appendChild(attendanceTd);
+        newTable.appendChild(studentTr);
+    });
+
+    return newTable;
 }
 
-function fillInTable(table, countOfDays, firstDay) {
-    for (let i = 1, d = 1; i < 6; i++) {
-        for (let j = firstDay; j < 7; j++) {
-            if (d === countOfDays + 1) {
-                return;
-            }
-            table.rows[i].cells[j].innerHTML = d++;
+function selectLesson() {
+    listOfGroups.removeAttribute("disabled", "");
+    listOfLessons.removeAttribute("disabled", "");
+    removeElements(document.querySelectorAll(".log"));
+
+    let newDiv = createElem("div");
+    newDiv.setAttribute("class", "log");
+
+    let newP = createElem("p");
+    newP.setAttribute("class", "topic");
+    newP.textContent = "Тема: ";
+
+    let newInput = createElem("input");
+    newInput.setAttribute("class", "lesson-topic");
+    newInput.setAttribute("type", "text");
+
+    newP.appendChild(newInput);
+
+    let inputSaveButton = createElem("input");
+    inputSaveButton.setAttribute("type", "button");
+    inputSaveButton.setAttribute("class", "save-log-button");
+    inputSaveButton.setAttribute("value", "Сохранить");
+    inputSaveButton.setAttribute("onclick", "saveInfo()");
+
+    newDiv.appendChild(newP);
+    newDiv.appendChild(createTable());
+    newDiv.appendChild(inputSaveButton);
+
+    let wrapper = document.getElementById("mainWrapper");
+    wrapper.appendChild(newDiv);
+}
+
+function changeTable() {
+    let newP = null;
+    let table = document.querySelector(".log-table");
+    let child = "";
+    for (let i = 1; i < table.rows.length; i++) {
+        newP = createElem("p");
+        newP.style.margin = 0;
+        if (table.rows[i].cells[1].children[0].checked) {
+            newP.textContent = "присутствует";
+            child = table.rows[i].cells[1].children[0];
+            table.rows[i].cells[1].removeChild(child);
+            table.rows[i].cells[1].appendChild(newP);
+        } else {
+            newP.textContent = "";
+            child = table.rows[i].cells[1].children[0];
+            table.rows[i].cells[1].removeChild(child);
+            table.rows[i].cells[1].appendChild(newP);
         }
-        firstDay = 0;
     }
 }
 
-function createCalendar() {
-    let date = new Date();
-    let userMonth = document.getElementById("userMonth").value;
-    let userYear = document.getElementById("userYear").value;
+function saveInfo() {
+    let newP = createElem("p");
+    newP.textContent = listOfGroups.options[listOfGroups.selectedIndex].text + ". " + listOfLessons.options[listOfLessons.selectedIndex].text + ".";
+    newP.style.textAlign = "left";
+    newP.style.margin = "16px";
 
-    if (userMonth < 1 || userMonth > 12 || userYear > date.getFullYear() || userYear < 1970) {
-        alert("Неверно введены данные!");
-        document.getElementById("userMonth").value = "";
-        document.getElementById("userYear").value = "";
+    changeTable();
+    let lessonTopic = document.querySelector(".lesson-topic");
+    lessonTopic.setAttribute("readonly", "");
+    lessonTopic.style.backgroundColor = "#FBF2E9";
+    lessonTopic.style.border = 0;
+    lessonTopic.style.outline = "none";
+
+    listOfGroups.setAttribute("disabled", "");
+    listOfLessons.setAttribute("disabled", "");
+
+    removeElements(document.querySelectorAll(".save-log-button"));
+    let wrapper = document.querySelector(".log");
+    wrapper.insertBefore(newP, wrapper.firstChild);
+    markedLessons.push(wrapper);
+}
+
+function showMarkedLessons() {
+    removeElements(document.querySelectorAll(".log"));
+    let wrapper = document.getElementById("mainWrapper");
+    markedLessons.forEach(ms => wrapper.appendChild(ms));
+}
+
+// Задание 6 
+
+// Создать html-страницу с возможностью забронировать билеты на поезд. Для начала пользователь выбирает направление поезда и дату поездки, дальше отмечает места для брони. Также добавить возможность посмотреть уже забронированные билеты. Хранить информацию в заранее подготовленных массивах.
+
+// P.s. функцию резервации мест с последующим запоминанием по направлению и дате не делал, т.к. в ТЗ такого не было.
+
+const directions = ["Москва-Гомель", "Минск-Гомель", "Киев-Минск", "Гомель-Витебск", "Гомель-Гродно"];
+const countOfSeats = 28;
+const countOfSeatsInOneSection = 4;
+let listOfDirections = null;
+let orderedTicketArr = [];
+let orderedTicketTableDiv = null;
+
+function bodyLoad() {
+    listOfGroups = document.getElementById("dropdownListOfGropus");
+    listOfLessons = document.getElementById("dropdownListOfLessons");
+    listOfDirections = document.getElementById("listOfDirections");
+    let newOption = null;
+
+    groups.forEach(g => {
+        newOption = createElem("option");
+        newOption.textContent = g;
+        listOfGroups.appendChild(newOption);
+    });
+
+    lessons.forEach(l => {
+        newOption = createElem("option");
+        newOption.textContent = l;
+        listOfLessons.append(newOption);
+    });
+
+    directions.forEach(d => {
+        newOption = createElem("option");
+        newOption.textContent = d;
+        listOfDirections.appendChild(newOption);
+    });
+}
+
+function createSection(numOfSeat, table, seatPrice) {
+    let td1 = null;
+    let td2 = null;
+    let cb1 = null;
+    let cb2 = null;
+    let tr = null;
+
+    for (let i = 0; i < 2; i++) {
+        tr = createElem("tr");
+        td1 = createElem("td");
+        cb1 = createElem("input");
+        cb1.setAttribute("type", "checkbox");
+        cb1.setAttribute("value", seatPrice);
+        td1.innerHTML = (i === 0 ? numOfSeat : --numOfSeat);
+        td1.appendChild(cb1);
+        td2 = createElem("td");
+        cb2 = createElem("input");
+        cb2.setAttribute("type", "checkbox");
+        cb2.setAttribute("value", seatPrice);
+        td2.innerHTML = numOfSeat += 2;
+        td2.appendChild(cb2);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        table.appendChild(tr);
+    }
+}
+
+function showTrainSeats() {
+    if (!document.getElementById("dateOfTrip").value) {
+        alert("Необходимо указать дату отправления!");
+        return;
+    }
+    let seatPrice = 62;
+    removeElements(document.querySelectorAll(".ordered-tickets"));
+    removeElements(document.querySelectorAll(".seats"));
+    let orderedSeats = [];
+    let totalPrice = 0;
+    let wrapDiv = createElem("div");
+    wrapDiv.setAttribute("class", "seats");
+
+    let mainTable = createElem("table");
+    mainTable.setAttribute("class", "train-seats");
+    mainTable.setAttribute("cellspacing", "3");
+
+    let mainTableTr = createElem("tr");
+
+    let wrapTd = null;
+    let table = null;
+    let j = 1;
+    for (let i = 0; i < countOfSeats / countOfSeatsInOneSection; i++) {
+        wrapTd = createElem("td");
+        table = createElem("table");
+        table.setAttribute("cellspacing", "1");
+        createSection(j, table, seatPrice);
+        j += countOfSeatsInOneSection;
+        seatPrice -= 4;
+        wrapTd.appendChild(table);
+        mainTableTr.appendChild(wrapTd);
+    }
+    let pTotalCost = createElem("p");
+    pTotalCost.textContent = "Итоговая стоимость: 0$";
+    pTotalCost.setAttribute("class", "totalPrice");
+    let buttonOrder = createElem("input");
+    buttonOrder.setAttribute("type", "button");
+    buttonOrder.setAttribute("value", "Заказать");
+    buttonOrder.setAttribute("class", "ticket-order-button");
+
+    mainTable.appendChild(mainTableTr);
+    wrapDiv.appendChild(mainTable);
+    wrapDiv.appendChild(pTotalCost);
+    wrapDiv.appendChild(buttonOrder);
+    let mainDiv = document.querySelector(".ticket-market-wrapper");
+    mainDiv.appendChild(wrapDiv);
+
+    Array.from(document.querySelector(".train-seats").querySelectorAll("input[type=checkbox]")).forEach(i => i.addEventListener("click", function(el) {
+        let p = document.querySelector(".totalPrice");
+        if (el.target.checked) {
+            orderedSeats.push(+el.target.previousSibling.textContent);
+            totalPrice += +el.target.value;
+            p.textContent = `Итоговая стоимость: ${totalPrice}$.`;
+        } else {
+            orderedSeats.splice(orderedSeats.indexOf(+el.target.previousSibling.textContent), 1);
+            totalPrice -= +el.target.value;
+            p.textContent = `Итоговая стоимость: ${totalPrice}$.`;
+        }
+    }));
+
+    document.querySelector(".ticket-order-button").addEventListener("click", () => {
+        removeElements(document.querySelectorAll(".seats"));
+        showOrderedTicketsInfo(listOfDirections.options[listOfDirections.selectedIndex].text, document.getElementById("dateOfTrip").value.split("-").reverse().join("."), orderedSeats);
+    })
+}
+
+function createOrderedTicketTable(direction, date, seats) {
+    let newTable = createElem("table");
+    newTable.setAttribute("class", "ordered-tickets-table");
+
+    let newCaption = createElem("caption");
+    newCaption.textContent = "Мои билеты";
+    newTable.appendChild(newCaption);
+
+    let tr = createElem("tr");
+    let th1 = createElem("th");
+    th1.textContent = "Маршрут";
+    let th2 = createElem("th");
+    th2.textContent = "Дата отправления";
+    let th3 = createElem("th");
+    th3.textContent = "Места, №";
+    tr.appendChild(th1);
+    tr.appendChild(th2);
+    tr.appendChild(th3);
+    newTable.appendChild(tr);
+
+    tr = createElem("tr");
+    let td1 = createElem("td");
+    td1.textContent = direction;
+    let td2 = createElem("td");
+    td2.textContent = date;
+    let td3 = createElem("td");
+    td3.textContent = seats;
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    newTable.appendChild(tr);
+    return newTable;
+}
+
+function addOrderedTicket(direction, date, seats, mainDiv) {
+    let table = orderedTicketTableDiv.querySelector(".ordered-tickets-table");
+    let tr = createElem("tr");
+    let td1 = createElem("td");
+    td1.textContent = direction;
+    let td2 = createElem("td");
+    td2.textContent = date;
+    let td3 = createElem("td");
+    td3.textContent = seats;
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    table.appendChild(tr);
+    mainDiv.appendChild(orderedTicketTableDiv);
+}
+
+function showOrderedTicketsInfo(direction, date, seats) {
+    let mainDiv = document.querySelector(".ticket-market-wrapper");
+    if (orderedTicketTableDiv != null) {
+        addOrderedTicket(direction, date, seats, mainDiv);
     } else {
-        removeElements(document.querySelectorAll(`.month-table`));
-        document.getElementById("monthCalendar").innerHTML += createMonthTable();
-        fillInTable(document.getElementsByClassName("month-table")[0], new Date(userYear, --userMonth + 1, 0).getDate(), new Date(userYear, userMonth, 1).getDay() - 1);
+        let newDiv = createElem("div");
+        newDiv.setAttribute("class", "ordered-tickets");
+        newDiv.appendChild(createOrderedTicketTable(direction, date, seats));
+        mainDiv.appendChild(newDiv);
+        orderedTicketTableDiv = newDiv;
     }
 }

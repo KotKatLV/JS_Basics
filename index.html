@@ -5,33 +5,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css">
-    <title>Kapatkov_JS_HW_13</title>
+    <title>Kapatkov_JS_HW_14</title>
 </head>
 
-<body>
+<body onload="bodyLoad()">
 
-    <p>Создать html-страницу с трекбаром. Предоставить пользователю возможность изменять положение синего указателя.</p>
+    <p>
+        Создать html-страницу со списком сообщений на форуме и формой для добавления нового сообщения.
+    </p>
 
-    <div class="slidecontainer">
-        <label for="myRange"></label><input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <div class="forum-container">
+        <div id="forum">
+            <div id="posts" class="posts">
+                <div class="post">
+                    <div class="user-login">
+                        <p class="login-name">Имя пользователя</p>
+                        <p class="message-time">Время отправки сообщения</p>
+                    </div>
+
+                    <div class="message">
+                        <p class="user-message">Сообщение пользователя</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="new-message-container">
+            <div class="message-from">
+                <p class="new-message">Добавление нового сообщения</p>
+                <p>Ваше имя:
+                    <label for="inputUserName"></label><input id="inputUserName" class="input-user-name" type="text">
+                </p>
+                <p>Ваше сообщение:
+                    <label for="txtArea"></label><textarea class="input-user-message" id="txtArea" cols="113" rows="2"></textarea>
+                </p>
+            </div>
+
+            <input class="send-button" type="button" value="Отправить" onclick="createNewPost()">
+        </div>
     </div>
 
     <hr>
 
-    <p>Создать html-страницу с галереей.</p>
+    <p>
+        Создать html-страницу для прохождения теста.
+    </p>
 
-    <div class="big-container">
-        <div id="container" class="conatiner">
-            <div class="back-button">
-                <img id="leftButton" class="back" src="Img/back.png" alt="назад" onclick="back()">
+    <div id="quiz" class="quiz">
+        <div class="firstQuestion">
+            <p><b>1) Сколько букв в слове "Пятый" ?</b></p>
+            <input name="firstQuest" type="radio" id="FiveRadio">
+            <label id="fiveLet" for="FiveRadio">5</label>
+            <br>
+            <br>
+            <input name="firstQuest" type="radio" id="FourRadio">
+            <label id="fourLet" for="FourRadio">4</label>
+            <br>
+            <br>
+            <input name="firstQuestion" type="submit" value="Ответить" onclick="checkFirstAnswer(this)">
+        </div>
+
+        <div class="secondQuestion">
+            <p><b>2) Сколько букв в слове "Шестой" ?</b></p>
+            <input name="secondQuest" type="radio" id="SixRadio">
+            <label id="sixLet" for="SixRadio">6</label>
+            <br>
+            <br>
+            <input name="secondQuest" type="radio" id="SevenRadio">
+            <label id="sevenLet" for="SevenRadio">7</label>
+            <br>
+            <br>
+            <input name="secondQuestion" type="submit" value="Ответить" onclick="checkSecondAnswer(this)">
+        </div>
+
+        <p>
+            <input type="button" value="Показать результаты" onclick="getTestResult()">
+        </p>
+    </div>
+
+    <hr>
+
+    <p>Создать html-страницу с формой для ввода стилизованного текста.</p>
+
+    <script src="JS/app.js"></script>
+
+    <div id="stylizedTextContainer" class="stylize-text-container">
+        <div id="stylizedTextForm" class="stylizedTextForm">
+            <div class="textStyle">
+                <input type="checkbox" name="boldText" id="boldText">
+                <label for="boldText">Жирный</label>
+
+                <input type="checkbox" name="underlineText" id="underlineText">
+                <label for="underlineText">Подчеркнутный</label>
+
+                <input type="checkbox" name="italicsText" id="italicsText">
+                <label for="italicsText">Курсив</label>
+
+                <input type="radio" name="textAligh" id="leftAlign">
+                <label for="leftAlign">Вырвнивание слева</label>
+
+                <input type="radio" name="textAligh" id="rightAlign">
+                <label for="rightAlign">Вырвнивание справа</label>
+
+                <input type="radio" name="textAligh" id="justifyAlign" checked>
+                <label for="justifyAlign">Вырвнивание по ширине</label>
             </div>
 
-            <div class="container-main-pic">
-                <img id="main-pic" src="Img/css.png" alt="CSS3">
-            </div>
-
-            <div class="next-button">
-                <img id="rightButton" class="next" src="Img/next.png" alt="вперед" onclick="next()">
+            <div class="inputText">
+                <label for="userText"></label><textarea class="textarea" name="userText" id="userText" cols="115" rows="10">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur quia tenetur culpa accusantium temporibus illum voluptas possimus neque natus mollitia saepe, architecto ducimus eveniet? Voluptatem fugit distinctio cumque aliquam amet.</textarea>
+                <br>
+                <input type="button" value="Показать текст" onclick="showText()">
             </div>
         </div>
     </div>
@@ -39,67 +122,146 @@
     <hr>
 
     <p>
-        Создать html-страницу с блоками информации, которые открываются по щелчку на заголовок. В один момент времени может быть развернут только один блок информации.
+        Создать html-страницу для магазина книг.
     </p>
 
-    <div class="main-container">
-        <div id="first-text-block">
-            <p class="block-text-p" onclick="headerClick(this)">Заголовок 1</p>
-        </div>
+    <div id="books-shop">
+        <div class="books-shop-main-container">
+            <div class="first-book-wrapper">
+                <div class="book-img">
+                    <img src="Img/first_book.jpg" alt="">
+                </div>
+                <div class="product-description">
+                    <div class="full-product-descr">
+                        <p class="book-name">
+                            CLR via C#. Программирование на платформе Microsoft .NET Framework 4.5 на языке C#.
+                        </p>
+                        <p class="author">
+                            <em>Джеффри Рихтер</em>
+                        </p>
+                        <p class="book-price">
+                            <b>29,93$</b>
+                        </p>
+                    </div>
+                    <div class="button">
+                        <button class="select-button" onclick="choosedProduct(this)">Выбрать</button>
+                    </div>
+                </div>
+            </div>
 
-        <div id="second-text-block">
-            <p class="block-text-p" onclick="headerClick(this)">Заголовок 2</p>
-        </div>
+            <div class="second-book-wrapper">
+                <div class="book-img">
+                    <img src="Img/second_book.jpg" alt=""></div>
+                <div class="product-description">
+                    <div class="full-product-descr">
+                        <p class="book-name">
+                            Объектно-ориентированное программирование в С++.
+                        </p>
+                        <p class="author">
+                            <em>Роберт Лафоре</em>
+                        </p>
+                        <p class="book-price">
+                            <b>27,63$</b>
+                        </p>
+                    </div>
+                    <div class="button">
+                        <button class="select-button" onclick="choosedProduct(this)">Выбрать</button>
+                    </div>
+                </div>
+            </div>
 
-        <div id="third-text-block">
-            <p class="block-text-p" onclick="headerClick(this)">Заголовок 3</p>
-        </div>
+            <div class="third-book-wrapper">
+                <div class="book-img">
+                    <img src="Img/third_book.jpg" alt="">
+                </div>
+                <div class="product-description">
+                    <div class="full-product-descr">
+                        <p class="book-name">
+                            Программирование на C++ в примерах и задачах.
+                        </p>
+                        <p class="author">
+                            <em>Алексей Васильев</em>
+                        </p>
+                        <p class="book-price">
+                            <b>9,32$</b>
+                        </p>
+                    </div>
+                    <div class="button">
+                        <button class="select-button" onclick="choosedProduct(this)">Выбрать</button>
+                    </div>
 
-        <div id="fourth-text-block">
-            <p class="block-text-p" onclick="headerClick(this)">Заголовок 4</p>
+                </div>
+            </div>
+
+            <div class="order-wrapper">
+
+                <table class="order-table">
+                    <tr>
+                        <td class="labels">Книга</td>
+                        <td class="inputs"><label for="bookName"></label><input id="bookName" type="text" autocomplete="none"></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Количество</td>
+                        <td class="inputs"><label for="countOfBook"></label><input id="countOfBook" type="number"></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Имя</td>
+                        <td class="inputs"><label for="userNumber"></label><input id="userNumber" type="text" autocomplete="none"></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Адрес доставки</td>
+                        <td class="inputs"><label for="delyAddress"></label><textarea id="delyAddress" cols="30" rows="7" autocomplete="none"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Дата доставки</td>
+                        <td class="inputs"><label for="delyDate"></label><input id="delyDate" type="date" autocomplete="none"></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Комментарий</td>
+                        <td class="inputs"><label for="inputComment"></label><textarea id="inputComment" cols="30" rows="7" autocomplete="none"></textarea></td>
+                    </tr>
+                </table>
+
+                <div class="button-buy">
+                    <button class="select-button" onclick="getInfoAboutSell()">Купить</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <hr>
 
-    <p>Создать html-страницу с новостями</p>
+    <p>Создать html-страницу с возможностью отмечать присутствующих на паре.</p>
 
-    <div class="news-conatiner" onscroll="LoadNews(this)">
-        <div>
-            <p><b>Заголовок новости 1</b></p>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
-            </p>
-        </div>
-
-        <div>
-            <p><b>Заголовок новости 2</b></p>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
-            </p>
-        </div>
-
-        <div>
-            <p><b>Заголовок новости 3</b></p>
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem sequi repellendus obcaecati necessitatibus maxime? Quisquam quos dolorum nihil corporis obcaecati libero, temporibus, omnis quae rem placeat perferendis ullam numquam. Animi?
+    <div id="mainWrapper" class="student-attendance-log-wrapper">
+        <div class="selection-string">
+            <p>Группа
+                <label for="dropdownListOfGropus"></label><select id="dropdownListOfGropus">
+                </select> Занятие
+                <label for="dropdownListOfLessons"></label><select id="dropdownListOfLessons"></select>
+                <input type="button" value="Выбрать" onclick="selectLesson()">
+                <input type="button" value="Просмотреть отмеченные пары" onclick="showMarkedLessons()">
             </p>
         </div>
     </div>
 
     <hr>
 
-    <p>Создать html-страницу, на которой пользователь может ввести номер месяца, год, и получить календарь на указанный месяц.</p>
+    <p>
+        Создать html-страницу с возможностью забронировать билеты на поезд.
+    </p>
 
-    <div id="monthCalendar">
-        <p>Месяц:
-            <label for="userMonth"></label><input id="userMonth" type="number"> Год:
-            <label for="userYear"></label><input id="userYear" type="number">
-            <input type="submit" value="Сгенерировать" onclick="createCalendar()">
-        </p>
+    <div class="ticket-market-wrapper">
+        <div class="ticket-market">
+            <p>Направление:
+                <label for="listOfDirections"></label><select id="listOfDirections">
+            </select>Дата:
+                <label for="dateOfTrip"></label><input type="date" id="dateOfTrip">
+                <input class="search-direction-button" type="button" value="Поиск" onclick="showTrainSeats()">
+            </p>
+        </div>
     </div>
-
-    <script src="JS/app.js"></script>
 </body>
 
 </html>

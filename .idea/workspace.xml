@@ -11,8 +11,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5ee57e-49bd-4062-beed-bbcfa2d8b615" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/Img/first_book.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Img/second_book.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Img/third_book.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task/JS_HW_14.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/back.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/css.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/html.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/js.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Img/next.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task/JS_HW_13.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,19 +64,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task" />
+      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task\JS" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
       <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\JS" />
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics" />
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task" />
-      <recent name="C:\Users\Константин\WebstormProjects\JS_Basics\Task\JS" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -220,10 +232,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601535391440">
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601535777987">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601535391440" />
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1601535777987" />
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1601507694732" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601506082879">
       <screen x="0" y="0" width="1920" height="1040" />
