@@ -9,3 +9,4 @@
 ## [Homework 8 task](https://github.com/KotKatLV/JS_Basics/blob/HW_8/Task/JS_HW_8.pdf)
 ## [Homework 9 task](https://github.com/KotKatLV/JS_Basics/blob/HW_9/Task/JS_HW_9.pdf)
 ## [Homework 10 task](https://github.com/KotKatLV/JS_Basics/blob/HW_10/Task/JS_HW_10.pdf)
+## [Homework 11 task](https://github.com/KotKatLV/JS_Basics/blob/HW_11/Task/JS_HW_11.pdf)
