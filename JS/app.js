@@ -1,143 +1,105 @@
-class MovieService {
-    constructor() {
-        this.apiKey = "80b87e96";
-    }
+ const imgArr = ["Img/Wood/1.jpg", "Img/Wood/2.jpg", "Img/Wood/3.jpg", "Img/Wood/4.jpg", "Img/Wood/5.jpg"];
+ let currentImg = 0;
+ let intervalId = 0;
 
-    searchMovie(title, type, page) {
-        $.ajax({
-            type: "GET",
-            url: `http://www.omdbapi.com/?s=${title}&apikey=${this.apiKey}&type=${type}&page=${page}`,
-            success: function(data) {
-                createFilmsDivs(data.Search);
-            }
-        });
-    }
+ $(document).ready(function() {
+     $(".circles-div div:eq(0)").css("background", "#5A4A42");
+     $(".buttons #toBegin, #prev").css("filter", "opacity(25%)");
+ });
 
-    getFilmFullDesc(imdbID) {
-        $.ajax({
-            type: "GET",
-            url: `http://www.omdbapi.com/?i=${imdbID}&apikey=${this.apiKey}&plot=short`,
-            success: function(data) {
-                createModalWindow(data);
-            }
-        });
-    };
-}
+ function getFirstImg() {
+     checkSituation(0);
+     $(".circles-div div").css("background", "white")
+     $(`.circles-div #${1}`).css("background", "#5A4A42");
+     $(".img-div img").attr("src", `${imgArr[0]}`);
+ }
 
-let ms = new MovieService();
-let currentPageNumber = 1;
+ function getPrevImg() {
+     if (currentImg === 0) {
+         return;
+     } else {
+         $(".circles-div div").css("background", "white")
+         $(`.circles-div #${currentImg}`).css("background", "#5A4A42");
+         $(".img-div img").fadeOut(1000, function() {
+             $(".img-div img").attr("src", `${imgArr[--currentImg]}`);
+             checkSituation(currentImg);
+         }).fadeIn(1000);
+     }
+ }
 
-$(document).ready(function() {
-    $(".load-img > img").css("display", "none");
-    $(".load-img-more > img").css("display", "none");
-})
+ function startSilde() {
+     if (currentImg === imgArr.length - 1) {
+         return;
+     } else {
+         let tmp = $(".buttons #play img").attr("src");
+         if (tmp.includes("Img/Nav/stop.jpg")) {
+             clearInterval(intervalId);
+             $(".buttons #play img").attr("src", "Img/Nav/play.jpg");
+             if (currentImg === imgArr.length - 1) {
+                 $(".buttons #play").css("filter", "opacity(25%)");
+             }
+         } else {
+             $(".buttons #play img").attr("src", "Img/Nav/stop.jpg");
+             intervalId = setInterval(getNextImg, 4000);
+         }
+     }
+ }
 
-function hideImg() {
-    $(".modal-content > img").hide();
-}
+ function getNextImg() {
+     if (currentImg === imgArr.length - 1) {
+         $(".buttons #play img").attr("src", "Img/Nav/play.jpg");
+         $(".buttons #play").css("filter", "opacity(25%)");
+         clearInterval(intervalId);
+         return;
+     } else {
+         $(".circles-div div").css("background", "white")
+         $(`.circles-div #${currentImg+=2}`).css("background", "#5A4A42");
+         $(".img-div img").fadeOut(1000, function() {
+             $(".img-div img").attr("src", `${imgArr[--currentImg]}`);
+             checkSituation(currentImg);
+         }).fadeIn(2000);
+     }
+ }
 
-function successGetFilmFullDesc() {
-    $(".modal").toggleClass("show-modal");
-    $(".modal-content img").css("margin-left", "0");
-    $(".modal-content").css({
-        "width": "650px",
-        "height": "410px"
-    });
-}
+ function getLastImg() {
+     checkSituation(imgArr.length - 1);
+     $(".circles-div div").css("background", "white")
+     $(`.circles-div #${imgArr.length}`).css("background", "#5A4A42");
+     $(".img-div img").attr("src", `${imgArr[imgArr.length - 1]}`);
+ }
 
-function hideLoadImgs() {
-    $(".load-img > img").hide();
-    $(".load-img-more > img").hide();
-}
+ function setImg(event) {
+     checkSituation(event.id - 1);
+     $(".circles-div div").css("background", "white")
+     $(`.circles-div #${event.id}`).css("background", "#5A4A42");
+     $(".img-div img").fadeOut(1000, function() {
+         $(".img-div img").attr("src", `${imgArr[currentImg]}`);
+     }).fadeIn(1000);
+ }
 
-function createModalWindow(film) {
-    successGetFilmFullDesc();
-    let imgTitle = $("<div>").attr("class", "img-title").append($("<img>").attr({
-        "src": film.Poster
-    })).appendTo($(".modal-content"));
-    createFilmDescrTable(film).appendTo($(".modal-content"));
-    $(".modal").toggleClass("show-modal");
-    $(".modal-content > img").hide();
-}
+ function checkSituation(id) {
+     currentImg = id;
+     if (currentImg === 0) {
+         $(".buttons #toBegin, #prev, #play").css("filter", "opacity(25%)");
+     }
 
-function createMoreButton() {
-    let div = $("<div>").attr("class", "button-container").append($("<button>").attr("onclick", "loadMore()").text("More"));
-    $(".main-wrapper").append(div);
-}
+     if (currentImg > 0) {
+         $(".buttons #toBegin, #prev, #play").css("filter", "");
+     }
 
-function search() {
-    if ($("#titleInput").val().length > 0) {
-        $(".button-container").remove();
-        createMoreButton();
-        $(".load-img > img").show();
-        currentPageNumber = 1;
-        $(".film-search-results").empty();
-        ms.searchMovie($("#titleInput").val().replace(" ", "+"), $("#typelist").children("option:selected").val(), 1);
-    } else {
-        alert("Error! Input filed title is empty!");
-    }
-}
+     if (currentImg === imgArr.length - 1) {
+         $(".buttons #toEnd, #next, #play").css("filter", "opacity(25%)");
+     }
 
-function createFilmsDivs(films) {
+     if (currentImg < imgArr.length - 1) {
+         $(".buttons #toEnd, #next, #play").css("filter", "");
+     }
+ }
 
-    if (films.length > 0) {
-        let flag = $(".film-search-results").length !== 0;
-        let filmSearchResDiv = $("<div>").attr("class", "film-search-results");
-
-        for (let i = 0; i < films.length; i++) {
-            let div = $("<div>").attr("class", "film-wrapper");
-            let titleWrapper = $("<div>").attr("class", "title-wrapper").append($("<img>").attr({
-                "src": films[i].Poster,
-                "alt": films.Title
-            })).appendTo(div);
-
-            let descDiv = $("<div>").attr("class", "description");
-            $("<p>").text(films[i].Title).appendTo(div).appendTo(descDiv);
-            $("<p>").text(films[i].Year).appendTo(div).appendTo(descDiv);
-            $("<button>").attr("class", "button-details").text("Details").val(films[i].imdbID).click(function() {
-                $(".modal-content").css({
-                    "width": "150px",
-                    "height": "40px"
-                });
-                $(".modal-content img").css("margin-left", "50px");
-                $(".modal-content > img").show();
-                $(".modal").toggleClass("show-modal");
-                ms.getFilmFullDesc(this.value);
-            }).appendTo(div).appendTo(descDiv);
-            descDiv.appendTo(div);
-
-            flag ? $(".film-search-results").append(div) : filmSearchResDiv.append(div);
-        }
-
-        if (!flag) filmSearchResDiv.insertBefore($(".load-img-more"));
-        films.length < 10 ? $(".button-container > button").attr("disabled", true) : $(".button-container > button").attr("disabled", false);
-        hideLoadImgs();
-    }
-}
-
-function loadMore() {
-    $(".button-container > button").attr("disabled", true)
-    $(".load-img-more > img").show();
-    ms.searchMovie($("#titleInput").val().replace(" ", "+"), $("#typelist").children("option:selected").val(), ++currentPageNumber);
-}
-
-function createFilmDescrTable(film) {
-    let secondDiv = $("<div>").attr("class", "description-table");
-    let table = $("<table>").attr("class", "table");
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Title"))).append($("<td>").text(film.Title)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Released"))).append($("<td>").text(film.Released)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Genre"))).append($("<td>").text(film.Genre)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Country"))).append($("<td>").text(film.Country)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Director"))).append($("<td>").text(film.Director)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Writer"))).append($("<td>").text(film.Writer)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Actors"))).append($("<td>").text(film.Actors)));
-    table.append($("<tr>").append($("<td>").append($("<b>").text("Awards"))).append($("<td>").text(film.Awards)));
-    secondDiv.append(table);
-    return secondDiv;
-}
-
-$(".close-button").click(function() {
-    $(".modal").toggleClass("show-modal");
-    $(".img-title").remove();
-    $(".description-table").remove();
-});
+ function openModal() {
+     $("#myModal").css("display", "block");
+     $("#img01").attr("src", imgArr[currentImg]);
+     $(".close").click(function() {
+         $("#myModal").css("display", "none");
+     });
+ }

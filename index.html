@@ -1,48 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kapatkov_JS_HW_16</title>
     <link rel="stylesheet" href="CSS/style.css">
+    <title>Kapatkov_JS_HW_18</title>
 </head>
 
 <body>
+
     <div class="main-wrapper">
-        <div class="search-form-wrapper">
-            <p class="search-p">Search</p>
-            <form class="search-form">
-                <p class="title-p">Title
-                    <label for="titleInput"></label><input type="text" id="titleInput"></p>
-                <p class="type-p">Type
-                    <label for="typelist"></label><select name="type-list" id="typelist">
-                        <option value="Movie">Movie</option>
-                        <option value="Series">Series</option>
-                        <option value="Episode">Episode</option>
-                    </select>
-                </p>
+        <div class="gallery-wrapper">
 
-                <button class="submit-button" type="button" onclick="search()">Search</button>
-            </form>
-        </div>
-
-        <div class="films-main-wrapper">
-            <div class="load-img">
-                <img src="Img/35.gif" alt="loading">
+            <div class="fullscreen-img">
+                <img src="Img/Screen/to_fullscreen.png" onclick="openModal()">
             </div>
 
-            <div class="load-img-more">
-                <img src="Img/35.gif" alt="loading">
+            <div class="img-div">
+                <img src="Img/Wood/1.jpg">
             </div>
-        </div>
 
-        <div class="modal">
-            <div class="modal-content">
-                <span class="close-button">X</span>
-                <img src="Img/35.gif" alt="loading">
+            <div class="circles-div">
+                <div id="1" class="circle" onclick="setImg(this)"></div>
+                <div id="2" class="circle" onclick="setImg(this)"></div>
+                <div id="3" class="circle" onclick="setImg(this)"></div>
+                <div id="4" class="circle" onclick="setImg(this)"></div>
+                <div id="5" class="circle" onclick="setImg(this)"></div>
             </div>
+
+            <div class="buttons">
+                <div id="toBegin" class="button-div"><img src="Img/Nav/to_tart.jpg" alt="первая" onclick="getFirstImg()"></div>
+                <div id="prev" class="button-div"><img src="Img/Nav/prev.jpg" alt="пред." onclick="getPrevImg()"></div>
+                <div id="play" class="button-div"><img src="Img/Nav/play.jpg" alt="слайд старт" onclick="startSilde()"></div>
+                <div id="next" class="button-div"><img src="Img/Nav/next.jpg" alt="след." onclick="getNextImg()"></div>
+                <div id="toEnd" class="button-div"><img src="Img/Nav/to_end.jpg" alt="последняя" onclick="getLastImg()"></div>
+            </div>
+
         </div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <span class="close">&times;</span>
+
+        <img class="modal-content" id="img01">
+
+        <div id="caption"></div>
     </div>
 
     <script src="JS/jQuery/jquery-3.5.1.js"></script>
